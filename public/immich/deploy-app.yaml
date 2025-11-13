@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich
+  namespace: immich
+  labels:
+    app.kubernetes.io/name: immich
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: immich
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: immich
+      labels:
+        app.kubernetes.io/name: immich
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: userdata
+          persistentVolumeClaim:
+            claimName: immich-userdata-pvc
+        - name: config
+          persistentVolumeClaim:
+            claimName: immich-config-pvc
+      containers:
+        - name: immich
+          image: ghcr.io/imagegenius/immich:1.135.3-noml
+          envFrom:
+            - secretRef:
+                name: app
+          env:
+            - name: TZ
+              value: "Europe/Tallinn"
+            - name: DB_HOSTNAME
+              value: "db"
+            - name: DB_USERNAME
+              value: "app"
+            - name: DB_DATABASE_NAME
+              value: "app"
+            - name: REDIS_HOSTNAME
+              value: "cache"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: SERVER_PORT
+              value: "7571"
+          volumeMounts:
+            - name: userdata
+              mountPath: "/photos"
+            - name: config
+              mountPath: "/config"
+          livenessProbe:
+            httpGet:
+              path: /api/server/ping
+              port: 7571
+              scheme: HTTP
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5

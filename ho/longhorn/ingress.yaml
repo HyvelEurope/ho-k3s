@@ -1,0 +1,39 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-plain
+  namespace: longhorn-system
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`longhorn.ho.hyvel.eu`)
+      middlewares:
+        - name: traefik-https-redirect
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress
+  namespace: longhorn-system
+spec:
+  tls:
+    secretName: web-certificate-secret
+    domains:
+      - main: longhorn.ho.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`longhorn.ho.hyvel.eu`)
+      kind: Rule
+      services:
+        - kind: Service
+          name: longhorn-frontend
+          port: 80

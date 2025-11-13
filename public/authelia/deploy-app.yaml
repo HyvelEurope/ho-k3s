@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: authelia
+  labels:
+    app.kubernetes.io/name: authelia
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+#  enableServiceLinks: false
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: authelia
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: app
+      labels:
+        app.kubernetes.io/name: authelia
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: config-app
+          configMap:
+            name: config-app
+      containers:
+        - name: authelia
+          image: authelia/authelia:4.39
+          envFrom:
+            - secretRef:
+                name: app
+          volumeMounts:
+            - name: config-app
+              mountPath: "/config/configuration.yml"
+              subPath: configuration.yml
+              readOnly: false

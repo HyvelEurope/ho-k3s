@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: qbt
+  labels:
+    app.kubernetes.io/name: qbt
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: qbt
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: app
+      labels:
+        app.kubernetes.io/name: qbt
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: smb
+        - name: config
+          persistentVolumeClaim:
+            claimName: config
+      containers:
+        - name: qbt
+          image: linuxserver/qbittorrent:5.1.2
+          env:
+            - name: WEBUI_PORT
+              value: "7530"
+            - name: TORRENTING_PORT
+              value: "7531"
+          volumeMounts:
+            - name: downloads
+              mountPath: "/downloads"
+            - name: config
+              mountPath: "/config"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 7530
+              scheme: HTTP
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5

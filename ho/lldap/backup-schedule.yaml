@@ -1,0 +1,28 @@
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: lldap
+  namespace: lldap
+spec:
+  backend:
+    repoPasswordSecretRef:
+      name: k8up-yint-minio
+      key: repo-password
+    s3:
+      endpoint: http://y-int.ho.internal:7700
+      bucket: lldap
+      accessKeyIDSecretRef:
+        name: k8up-yint-minio
+        key: minio-username
+      secretAccessKeySecretRef:
+        name: k8up-yint-minio
+        key: minio-password
+  backup:
+    schedule: '0 3 */5 * *'
+    failedJobsHistoryLimit: 3
+    successfulJobsHistoryLimit: 2
+  prune:
+    schedule: '0 0 * * 0'
+    retention:
+      keepLast: 3
+      keepMonthly: 2

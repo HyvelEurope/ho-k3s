@@ -1,0 +1,23 @@
+apiVersion: k8up.io/v1
+kind: Schedule
+metadata:
+  name: schedule-0
+  namespace: k8up
+spec:
+  backend:
+    repoPasswordSecretRef:
+      name: yint-minio-secret
+      key: repo-password
+    minio:
+      endpoint: http://y-int.ho.internal:7701
+      bucket: k8up
+      accessKeyIDSecretRef:
+        name: yint-minio-secret
+        key: minio-username
+      secretAccessKeySecretRef:
+        name: yint-minio-secret
+        key: minio-password
+  backup:
+    schedule: "@weekly"
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 2

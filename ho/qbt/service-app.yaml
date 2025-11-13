@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  namespace: qbt
+  labels:
+    app.kubernetes.io/name: qbt
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: qbt
+    app.kubernetes.io/component: app
+  ports:
+    - protocol: TCP
+      port: 7530
+      targetPort: 7530
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-torrent
+  namespace: qbt
+  labels:
+    app.kubernetes.io/name: qbt
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: qbt
+    app.kubernetes.io/component: app
+  ports:
+    - name: torrent-tcp
+      protocol: TCP
+      port: 7531
+      targetPort: 7531
+    - name: torrent-udp
+      protocol: UDP
+      port: 7531
+      targetPort: 7531
+  loadBalancerIP: 192.168.200.11
+  type: LoadBalancer

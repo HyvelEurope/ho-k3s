@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: lldap
+  labels:
+    app.kubernetes.io/name: lldap
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: lldap
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: app
+      labels:
+        app.kubernetes.io/name: lldap
+        app.kubernetes.io/component: app
+    spec:
+      containers:
+        - name: lldap
+          image: lldap/lldap:2025-10-12-alpine
+          envFrom:
+            - secretRef:
+                name: app
+          env:
+            - name: TZ
+              value: "Europe/Tallinn"
+            - name: LLDAP_LDAP_PORT
+              value: "7704"
+            - name: LLDAP_HTTP_PORT
+              value: "7705"
+            - name: LLDAP_SMTP_OPTIONS__ENABLE_PASSWORD_RESET
+              value: "true"
+            - name: LLDAP_LDAP_BASE_DN
+              value: "dc=hyvel,dc=eu"
+            - name: LLDAP_SMTP_OPTIONS__PORT
+              value: "465"
+            - name: LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION
+              value: "TLS"

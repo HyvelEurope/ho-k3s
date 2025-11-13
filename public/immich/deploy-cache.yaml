@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache
+  namespace: immich
+  labels:
+    app.kubernetes.io/name: immich
+    app.kubernetes.io/component: cache
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: immich
+      app.kubernetes.io/component: cache
+  template:
+    metadata:
+      name: cache
+      labels:
+        app.kubernetes.io/name: immich
+        app.kubernetes.io/component: cache
+    spec:
+      containers:
+        - name: valkey
+          image: valkey/valkey:8-alpine

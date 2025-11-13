@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-ho-hyvel-certificate
+  namespace: cert-manager
+spec:
+  secretName: wildcard-ho-hyvel-certificate-secret
+  issuerRef:
+    name: hyvel-dns01-issuer
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+  commonName: "ho.hyvel.eu"
+  dnsNames:
+    - "ho.hyvel.eu"
+    - "*.ho.hyvel.eu"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "traefik,pve,qbt,ts,lldap,scanjs"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"

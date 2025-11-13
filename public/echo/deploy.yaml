@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  namespace: echo
+  labels:
+    app.kubernetes.io/name: echo
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: echo
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: echo
+      labels:
+        app.kubernetes.io/name: echo
+        app.kubernetes.io/component: app
+    spec:
+      containers:
+        - name: echo
+          image: jmalloc/echo-server
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            periodSeconds: 15
+            successThreshold: 1
+            failureThreshold: 5

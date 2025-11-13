@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich
+  namespace: immich
+  labels:
+    app.kubernetes.io/name: immich
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: immich
+    app.kubernetes.io/component: app
+  ports:
+    - port: 7571
+      protocol: TCP
+  clusterIP: None

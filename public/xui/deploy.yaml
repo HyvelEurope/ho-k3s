@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xui
+  namespace: xui
+  labels:
+    app.kubernetes.io/name: xui
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: xui
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: xui
+      labels:
+        app.kubernetes.io/name: xui
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: xui-pvc
+        - name: xui-certificate
+          secret:
+            secretName: wildcard-hyvel-certificate-secret
+      containers:
+        - name: xui
+          image: ghcr.io/mhsanaei/3x-ui:2.8.5
+          volumeMounts:
+            - name: db
+              mountPath: "/etc/x-ui"
+            - name: xui-certificate
+              mountPath: "/etc/certs/"
+              readOnly: true

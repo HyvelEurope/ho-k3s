@@ -1,0 +1,76 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  namespace: authelia
+spec:
+  headers:
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    customResponseHeaders:
+      server: ""
+      limao: "sasisa"
+    frameDeny: true
+    customFrameOptionsValue: "SAMEORIGIN"
+    contentTypeNosniff: true
+    referrerPolicy: "strict-origin-when-cross-origin"
+    permissionsPolicy: "camera=(), microphone=(), geolocation=()"
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-plain
+  namespace: authelia
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`auth.hyvel.eu`)
+      middlewares:
+        - name: traefik-https-redirect
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress
+  namespace: authelia
+spec:
+  tls:
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: hyvel.eu
+        sans:
+          - "auth.hyvel.eu"
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`auth.hyvel.eu`) && PathPrefix(`/api/authz/forward-auth`)
+      middlewares:
+        - name: security-headers
+          namespace: xui
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 7702
+    - match: Host(`auth.hyvel.eu`)
+      middlewares:
+        - name: anubis
+          namespace: traefik
+        - name: security-headers
+          namespace: authelia
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 7702

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-container
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine
+  template:
+    metadata:
+      labels:
+        app: alpine
+    spec:
+      containers:
+        - name: alpine
+          image: alpine:3.22.0
+          command:
+            - sleep
+            - inf

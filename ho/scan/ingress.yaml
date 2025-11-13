@@ -1,0 +1,65 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  namespace: scanjs
+spec:
+  headers:
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    customResponseHeaders:
+      server: ""
+      x-powered-by: ""
+    frameDeny: true
+    customFrameOptionsValue: "SAMEORIGIN"
+    contentTypeNosniff: true
+    referrerPolicy: "strict-origin-when-cross-origin"
+    permissionsPolicy: "camera=(), microphone=(), geolocation=()"
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-plain
+  namespace: scanjs
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`scan.ho.hyvel.eu`)
+      middlewares:
+        - name: traefik-https-redirect
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress
+  namespace: scanjs
+spec:
+  tls:
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: scan.ho.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`scan.ho.hyvel.eu`)
+      middlewares:
+        - name: security-headers
+          namespace: scanjs
+        - name: authelia
+          namespace: traefik
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 8080

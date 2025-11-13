@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts
+  namespace: ts
+  labels:
+    app.kubernetes.io/name: ts
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ts
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: ts
+      labels:
+        app.kubernetes.io/name: ts
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: ts-pvc
+      containers:
+        - name: ts
+          image: ghcr.io/yourok/torrserver:MatriX.136
+          env:
+            - name: TS_PORT
+              value: "7540"
+          volumeMounts:
+            - name: data
+              mountPath: "/opt/ts"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 7540
+              scheme: HTTP
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+

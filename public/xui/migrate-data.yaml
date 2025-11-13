@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: xui
+  labels:
+    app: busybox
+spec:
+  containers:
+    - image: busybox
+      name: busybox
+      command:
+        - sleep
+        - "3600"
+      volumeMounts:
+        - name: data
+          mountPath: "/etc"
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: xui-pvc

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anubis
+  namespace: anubis
+  labels:
+    app.kubernetes.io/name: anubis
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: anubis
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: anubis
+      labels:
+        app.kubernetes.io/name: anubis
+        app.kubernetes.io/component: app
+    spec:
+      containers:
+        - name: anubis
+          image: ghcr.io/techarohq/anubis:v1.23.0
+          envFrom:
+            - secretRef:
+                name: app
+          env:
+            - name: "BIND"
+              value: ":7580"
+            - name: "METRICS_BIND"
+              value: ":9090"
+            - name: "TARGET"
+              value: " "
+            - name: "REDIRECT_DOMAINS"
+              value: "echo.hyvel.eu,vault.hyvel.eu,xui.hyvel.eu,imch.hyvel.eu,auth.hyvel.eu"
+            - name: "COOKIE_DOMAIN"
+              value: "hyvel.eu"
+            - name: "PUBLIC_URL"
+              value: "https://prt.hyvel.eu"
+            - name: "SERVE_ROBOTS_TXT"
+              value: "true"
+            - name: "DIFFICULTY"
+              value: "4"
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 9090
+              scheme: HTTP
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            periodSeconds: 15
+            successThreshold: 1
+            failureThreshold: 5

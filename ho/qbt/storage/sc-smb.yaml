@@ -1,0 +1,17 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: smb
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: smb.csi.k8s.io
+parameters:
+  source: //y-int.ho.internal/torrents
+  csi.storage.k8s.io/node-stage-secret-name: smb
+  csi.storage.k8s.io/node-stage-secret-namespace: qbt
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - noserverino

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ts-pvc
+  namespace: ts
+  annotations:
+    k8up.io/backup: "true"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: proxmox-data-sc-0
+  resources:
+    requests:
+      storage: 1Gi

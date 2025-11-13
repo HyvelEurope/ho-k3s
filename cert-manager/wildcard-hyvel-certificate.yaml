@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-hyvel-certificate
+  namespace: cert-manager
+spec:
+  secretName: wildcard-hyvel-certificate-secret
+  issuerRef:
+    name: hyvel-dns01-issuer
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+  commonName: "hyvel.eu"
+  dnsNames:
+    - "hyvel.eu"
+    - "*.hyvel.eu"
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "traefik,echo,pve,xui,vw,immich,sxng,anubis,authelia"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"

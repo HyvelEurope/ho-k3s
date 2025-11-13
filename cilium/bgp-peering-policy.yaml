@@ -1,0 +1,16 @@
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPPeeringPolicy
+metadata:
+   name: bgp-peering-policy
+   namespace: cilium
+spec:
+  virtualRouters:
+    - localASN: 64512
+      serviceAdvertisements:
+        - LoadBalancerIP
+      serviceSelector:
+        matchExpressions:
+          - { key: somekey, operator: NotIn, values: [ 'never-used-value' ] }
+      neighbors:
+        - peerAddress: 192.168.0.1
+          peerASN: 64512

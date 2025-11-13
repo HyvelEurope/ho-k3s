@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: anubis
+  namespace: traefik
+spec:
+  forwardAuth:
+    address: https://prt.hyvel.eu/.within.website/x/cmd/anubis/api/check
+    trustForwardHeader: true

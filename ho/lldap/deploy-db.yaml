@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  namespace: lldap
+  labels:
+    app.kubernetes.io/name: lldap
+    app.kubernetes.io/component: db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: lldap
+      app.kubernetes.io/component: db
+  template:
+    metadata:
+      name: db
+      labels:
+        app.kubernetes.io/name: lldap
+        app.kubernetes.io/component: db
+      annotations:
+        k8up.io/backup: "true"
+        k8up.io/backupcommand: "sh -c 'PGDATABASE=\"$POSTGRES_DB\" PGUSER=\"$POSTGRES_USER\" PGPASSWORD=\"$POSTGRES_PASSWORD\" pg_dump --clean'"
+        k8up.io/file-extension: ".sql"
+    spec:
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: db
+      containers:
+        - name: postgres
+          image: postgres:17-alpine
+          envFrom:
+            - secretRef:
+                name: db
+          env:
+            - name: POSTGRES_USER
+              value: "app"
+            - name: POSTGRES_DB
+              value: "app"
+            - name: PGDATA
+              value: "/data/pgdata"
+          volumeMounts:
+            - name: db
+              mountPath: "/data"

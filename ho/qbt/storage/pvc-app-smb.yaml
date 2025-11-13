@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: smb
+  namespace: qbt
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: smb
+  resources:
+    requests:
+      storage: 300Gi
