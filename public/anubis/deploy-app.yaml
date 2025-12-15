@@ -21,6 +21,10 @@ spec:
         app.kubernetes.io/name: anubis
         app.kubernetes.io/component: app
     spec:
+      volumes:
+        - name: config-app
+          configMap:
+            name: config-app
       containers:
         - name: anubis
           image: ghcr.io/techarohq/anubis:v1.23.0
@@ -38,12 +42,19 @@ spec:
               value: "hyvel.eu,echo.hyvel.eu,vault.hyvel.eu,xui.hyvel.eu,imch.hyvel.eu,auth.hyvel.eu"
             - name: "COOKIE_DOMAIN"
               value: "hyvel.eu"
+            - name: "POLICY_FNAME"
+              value: "/data/cfg/botPolicy.yaml"
             - name: "PUBLIC_URL"
               value: "https://prt.hyvel.eu"
             - name: "SERVE_ROBOTS_TXT"
               value: "true"
             - name: "DIFFICULTY"
               value: "4"
+          volumeMounts:
+            - name: config-app
+              mountPath: "/data/cfg/botPolicy.yaml"
+              subPath: botPolicy.yaml
+              readOnly: true
           livenessProbe:
             httpGet:
               path: /metrics

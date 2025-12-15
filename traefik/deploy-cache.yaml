@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: souin-cache
+  namespace: traefik
+  labels:
+    app.kubernetes.io/name: souin
+    app.kubernetes.io/component: cache
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: souin
+      app.kubernetes.io/component: cache
+  template:
+    metadata:
+      name: souin-cache
+      labels:
+        app.kubernetes.io/name: souin
+        app.kubernetes.io/component: cache
+    spec:
+      containers:
+        - name: valkey
+          image: valkey/valkey:9-alpine

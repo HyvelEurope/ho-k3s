@@ -52,12 +52,30 @@ spec:
   entryPoints:
     - websecure
   routes:
+    - match: Host(`hyvel.eu`) && PathRegexp(`^.*\.(woff2?|ttf|eot|otf)$`)
+      middlewares:
+        - name: security-headers
+          namespace: hyvel
+        - name: compress
+          namespace: traefik
+        - name: cache
+          namespace: traefik
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 7581
+
     - match: Host(`hyvel.eu`)
       middlewares:
         - name: anubis
           namespace: traefik
         - name: security-headers
           namespace: hyvel
+        - name: compress
+          namespace: traefik
+        - name: cache
+          namespace: traefik
       kind: Rule
       services:
         - kind: Service

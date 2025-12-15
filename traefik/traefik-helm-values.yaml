@@ -135,6 +135,9 @@ experimental:
     cloudflarewarp:
       moduleName: github.com/PseudoResonance/cloudflarewarp
       version: v1.4.2
+    souin:
+      moduleName: github.com/darkweak/souin
+      version: v1.7.8
   # demo:
   #   moduleName: github.com/traefik/plugindemo
   #   version: v0.2.1
