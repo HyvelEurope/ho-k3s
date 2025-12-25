@@ -45,7 +45,7 @@ metadata:
   namespace: qbt
 spec:
   tls:
-    secretName: wildcard-hyvel-certificate-secret
+    secretName: wildcard-ho-hyvel-certificate-secret
     domains:
       - main: qbt.ho.hyvel.eu
   entryPoints:
