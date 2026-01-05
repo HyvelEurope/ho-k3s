@@ -4,20 +4,45 @@ metadata:
   name: app
   namespace: hyvel
 data:
-  default.conf: |
-    server {
-      listen 80;
-      server_name _;
+  nginx.conf: |
+    user nginx;
+    worker_processes 1;
+    error_log /dev/stdout warn;
+    pid /nginx.pid;
 
-      root /data/current/public;
-      index index.html index.htm;
-      
+    events {
+      worker_connections 1024;
+      use epoll;
+    }
+
+    http {
       include mime.types;
+      default_type application/octet-stream;
       types {
         application/manifest+json webmanifest;
       }
+    
+      access_log off;
+      server_tokens off;
 
-      location / {
-        try_files $uri $uri/ =404;
+      sendfile on;
+      tcp_nopush on;
+      reset_timedout_connection on;
+    
+      keepalive_timeout 15s;
+      client_body_timeout 15s;
+      client_header_timeout 15s;
+      send_timeout 15s;
+
+      server {
+        listen 80 default_server;
+        server_name _;
+
+        root /data/current/public;
+        index index.html index.htm;
+  
+        location / {
+          try_files $uri $uri/ =404;
+        }
       }
     }

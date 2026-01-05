@@ -14,14 +14,22 @@ data:
 
     http {
       include mime.types;
+
       access_log off;
+      server_tokens off;
 
       sendfile on;
-      keepalive_timeout 15;
+      tcp_nopush on;
+      reset_timedout_connection on;
+    
+      keepalive_timeout 15s;
+      client_body_timeout 15s;
+      client_header_timeout 15s;
+      send_timeout 15s;
 
       server {
         listen 80 default_server;
-        server_name  _;
+        server_name _;
 
         location / {
           default_type text/plain;
