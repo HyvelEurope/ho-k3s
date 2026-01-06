@@ -35,12 +35,12 @@ spec:
             name: app
       containers:
         - name: git-sync
-          image: registry.k8s.io/git-sync/git-sync:v4.5.0
+          image: registry.k8s.io/git-sync/git-sync:v4.5.1
           securityContext:
             runAsUser: 65533
           env:
             - name: GITSYNC_REPO
-              value: "git@github.com:tengzl33t/hyvel-main-site.git"
+              value: "git@github.com:HyvelEurope/static-site.git"
             - name: GITSYNC_BRANCH
               value: "main"
             - name: GITSYNC_ROOT

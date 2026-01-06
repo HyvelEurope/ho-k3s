@@ -30,7 +30,7 @@ spec:
             secretName: wildcard-hyvel-certificate-secret
       containers:
         - name: xui
-          image: ghcr.io/mhsanaei/3x-ui:2.8.5
+          image: ghcr.io/mhsanaei/3x-ui:2.8.6
           volumeMounts:
             - name: db
               mountPath: "/etc/x-ui"
