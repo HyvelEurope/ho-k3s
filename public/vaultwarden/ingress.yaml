@@ -60,8 +60,6 @@ spec:
 
     - match: Host(`vault.hyvel.eu`)
       middlewares:
-        - name: anubis
-          namespace: traefik
         - name: security-headers
           namespace: vw
         - name: compress
