@@ -55,10 +55,6 @@ spec:
   routes:
     - match: Host(`echo.hyvel.eu`)
       middlewares:
-        - name: rate-limiter
-          namespace: traefik
-        - name: inflight-limiter
-          namespace: traefik
         - name: security-headers
           namespace: echo
         - name: compress

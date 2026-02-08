@@ -21,6 +21,10 @@ spec:
         app.kubernetes.io/name: vaultwarden
         app.kubernetes.io/component: app
     spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: vaultwarden-app-pvc
       containers:
         - name: vaultwarden
           image: vaultwarden/server:1.35.2-alpine
@@ -32,6 +36,9 @@ spec:
               value: https://vault.hyvel.eu/
             - name: ROCKET_PORT
               value: "7561"
+          volumeMounts:
+            - name: data
+              mountPath: "/data"
           livenessProbe:
             httpGet:
               path: /alive
