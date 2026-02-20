@@ -53,8 +53,6 @@ spec:
   routes:
     - match: Host(`imch.hyvel.eu`)
       middlewares:
-        - name: anubis
-          namespace: traefik
         - name: security-headers
           namespace: immich
         - name: compress

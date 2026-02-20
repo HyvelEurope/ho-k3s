@@ -14,21 +14,25 @@ spec:
     - name: web
       protocol: TCP
       port: 7700
-      targetPort: 7700
     - name: web-sub
       protocol: TCP
       port: 7560
-      targetPort: 7560
-    - name: xhttp-tls
+    - name: vless-xhttp-tls
       protocol: TCP
       port: 7552
-      targetPort: 7552
-    - name: raw-reality
+    - name: vless-raw-reality
       protocol: TCP
       port: 7553
-      targetPort: 7553
-    - name: xhttp-reality
+    - name: vless-xhttp-reality
       protocol: TCP
       port: 7554
-      targetPort: 7554
+    - name: trojan-raw-reality
+      protocol: TCP
+      port: 7555
+    - name: trojan-xhttp-reality
+      protocol: TCP
+      port: 7556
+    - name: trojan-xhttp-tls
+      protocol: TCP
+      port: 7557
   type: ClusterIP
