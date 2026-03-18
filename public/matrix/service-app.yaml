@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  namespace: matrix
+  labels:
+    app.kubernetes.io/name: matrix
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: matrix
+    app.kubernetes.io/component: app
+  ports:
+    - port: 7750
+      protocol: TCP
+  type: ClusterIP

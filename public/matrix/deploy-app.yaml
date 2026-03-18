@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: matrix
+  labels:
+    app.kubernetes.io/name: matrix
+    app.kubernetes.io/component: app
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: matrix
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: app
+      labels:
+        app.kubernetes.io/name: matrix
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: app
+      containers:
+        - name: continuwuity
+          image: forgejo.ellis.link/continuwuation/continuwuity:main-maxperf
+          envFrom:
+            - secretRef:
+                name: app
+          env:
+            - name: CONTINUWUITY_SERVER_NAME
+              value: mtx.hyvel.eu
+            - name: CONTINUWUITY_DATABASE_PATH
+              value: "/data/db"
+            - name: CONTINUWUITY_PORT
+              value: "7750"
+            - name: CONTINUWUITY_MAX_REQUEST_SIZE
+              value: "20000000"
+            - name: CONTINUWUITY_ALLOW_REGISTRATION
+              value: "true"
+            - name: CONTINUWUITY_ALLOW_FEDERATION
+              value: "true"
+            - name: CONTINUWUITY_ALLOW_CHECK_FOR_UPDATES
+              value: "false"
+            - name: CONTINUWUITY_TRUSTED_SERVERS
+              value: '["matrix.org"]'
+            - name: CONTINUWUITY_ADDRESS
+              value: 0.0.0.0
+            - name: CONTINUWUITY_NEW_USER_DISPLAYNAME_SUFFIX
+              value: ""
+            - name: CONTINUWUITY_TURN_URIS
+              value: '["turns:trn.hyvel.eu"]'
+            - name: CONTINUWUITY_WELL_KNOWN
+              value: |
+                {
+                client=https://mtx.hyvel.eu,
+                server=mtx.hyvel.eu:443
+                }
+          volumeMounts:
+            - name: data
+              mountPath: "/data"
+          livenessProbe:
+            httpGet:
+              path: /_matrix/federation/v1/version
+              port: 7750
+              scheme: HTTP
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            failureThreshold: 3

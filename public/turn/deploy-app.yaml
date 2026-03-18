@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: turn
+  labels:
+    app.kubernetes.io/name: turn
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: turn
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: turn
+      labels:
+        app.kubernetes.io/name: turn
+        app.kubernetes.io/component: app
+    spec:
+      containers:
+        - name: coturn
+          image: coturn/coturn:4.9-alpine
+          volumeMounts:
+            - name: config-app
+              mountPath: "/etc/coturn/turnserver.conf"
+              subPath: turnserver.conf
+              readOnly: true
+            - name: turn-certificate
+              mountPath: "/etc/turn/certs/"
+              readOnly: true
+      volumes:
+        - name: config-app
+          configMap:
+            name: config-app
+        - name: turn-certificate
+          secret:
+            secretName: wildcard-hyvel-certificate-secret
