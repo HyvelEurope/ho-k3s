@@ -26,6 +26,18 @@ spec:
           persistentVolumeClaim:
             claimName: app
       containers:
+        - name: livekit-jwt
+          image: ghcr.io/element-hq/lk-jwt-service:0.4.1
+          envFrom:
+            - secretRef:
+                name: lk-jwt
+          env:
+            - name: LIVEKIT_JWT_BIND
+              value: ":7751"
+            - name: LIVEKIT_URL
+              value: "wss://lk.ho.hyvel.eu"
+            - name: LIVEKIT_FULL_ACCESS_HOMESERVERS
+              value: "mtx.hyvel.eu"
         - name: continuwuity
           image: forgejo.ellis.link/continuwuation/continuwuity:main-maxperf
           envFrom:

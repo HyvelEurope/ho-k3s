@@ -22,3 +22,4 @@ public/hyvel/secrets-app.yaml filter=git-crypt diff=git-crypt
 public/anubis/config-app.yaml filter=git-crypt diff=git-crypt
 public/turn/config-app.yaml filter=git-crypt diff=git-crypt
 public/matrix/secrets-app.yaml filter=git-crypt diff=git-crypt
+public/matrix/secrets-lk-jwt.yaml filter=git-crypt diff=git-crypt
