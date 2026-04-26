@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: tproxy
+  labels:
+    app.kubernetes.io/name: tproxy
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: tproxy
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: tproxy
+      labels:
+        app.kubernetes.io/name: tproxy
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: config-app
+          configMap:
+            name: config-app
+      containers:
+        - name: tproxy
+          image: raylabpro/telemt:3.4.5-alpine3.23
+          volumeMounts:
+            - name: config-app
+              mountPath: "/etc/telemt/config.toml"
+              subPath: config.toml
+              readOnly: true
