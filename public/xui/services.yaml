@@ -17,22 +17,36 @@ spec:
     - name: web-sub
       protocol: TCP
       port: 7560
-    - name: vless-xhttp-tls
-      protocol: TCP
-      port: 7552
-    - name: vless-raw-reality
-      protocol: TCP
-      port: 7553
-    - name: vless-xhttp-reality
+    - name: vless-1
       protocol: TCP
       port: 7554
-    - name: trojan-raw-reality
+    - name: vless-2
       protocol: TCP
       port: 7555
-    - name: trojan-xhttp-reality
+    - name: vless-3
       protocol: TCP
       port: 7556
-    - name: trojan-xhttp-tls
-      protocol: TCP
-      port: 7557
   type: ClusterIP
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: xui-udp
+  namespace: xui
+  labels:
+    app.kubernetes.io/name: xui
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: xui
+    app.kubernetes.io/component: app
+  ports:
+    - name: udp
+      protocol: UDP
+      port: 8443
+      targetPort: 7557
+  loadBalancerIP: 192.168.200.15
+  type: LoadBalancer
