@@ -1,0 +1,62 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  namespace: dummy200
+spec:
+  headers:
+    customResponseHeaders:
+      server: ""
+    frameDeny: true
+    customFrameOptionsValue: "SAMEORIGIN"
+    contentTypeNosniff: true
+    referrerPolicy: "strict-origin-when-cross-origin"
+    permissionsPolicy: "camera=(), microphone=(), geolocation=()"
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-plain
+  namespace: dummy200
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: HostRegexp(`.+`)
+      middlewares:
+        - name: security-headers
+          namespace: dummy200
+      kind: Rule
+      priority: 1
+      services:
+        - kind: Service
+          name: app
+          port: 7585
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress
+  namespace: dummy200
+spec:
+  tls:
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostRegexp(`.+`)
+      middlewares:
+        - name: security-headers
+          namespace: dummy200
+      kind: Rule
+      priority: 1
+      services:
+        - kind: Service
+          name: app
+          port: 7585
