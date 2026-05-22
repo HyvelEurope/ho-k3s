@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: anubis
+  name: app
   namespace: anubis
   labels:
     app.kubernetes.io/name: anubis
@@ -22,15 +22,15 @@ spec:
         app.kubernetes.io/component: app
     spec:
       volumes:
-        - name: config-app
-          configMap:
-            name: config-app
+        - name: app-config
+          secret:
+            secretName: app-config
       containers:
         - name: anubis
           image: ghcr.io/techarohq/anubis:v1.25.0
           envFrom:
             - secretRef:
-                name: app
+                name: app-envs
           env:
             - name: "BIND"
               value: ":7580"
@@ -51,7 +51,7 @@ spec:
             - name: "DIFFICULTY"
               value: "4"
           volumeMounts:
-            - name: config-app
+            - name: app-config
               mountPath: "/data/cfg/botPolicy.yaml"
               subPath: botPolicy.yaml
               readOnly: true
