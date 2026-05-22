@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - config-app.yaml
-  - secrets-app.yaml
+  - secret-app.yaml
   - deploy-app.yaml
   - service-app.yaml
   - ingress-app.yaml
