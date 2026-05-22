@@ -9,7 +9,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.klick.ee`) || HostSNI(`klick.ee`)
+    - match: HostSNI(`www.klick.ee`)
       services:
         - name: app
           port: 7770
