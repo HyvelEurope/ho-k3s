@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: hyvel
+  labels:
+    app.kubernetes.io/name: hyvel
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: hyvel
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: hyvel
+      labels:
+        app.kubernetes.io/name: hyvel
+        app.kubernetes.io/component: app
+    spec:
+      securityContext:
+        fsGroup: 65533
+      volumes:
+        - name: git-secret
+          secret:
+            secretName: app
+            defaultMode: 0400
+        - name: git-content
+          emptyDir: {}
+        - name: app
+          configMap:
+            name: app
+      containers:
+        - name: git-sync
+          image: registry.k8s.io/git-sync/git-sync:v4.5.1
+          securityContext:
+            runAsUser: 65533
+          env:
+            - name: GITSYNC_REPO
+              value: "git@github.com:HyvelEurope/static-site.git"
+            - name: GITSYNC_BRANCH
+              value: "main"
+            - name: GITSYNC_ROOT
+              value: "/data"
+            - name: GITSYNC_PERIOD
+              value: "60s"
+            - name: GITSYNC_ONE_TIME
+              value: "false"
+            - name: GITSYNC_LINK
+              value: "current"
+          volumeMounts:
+            - name: git-secret
+              mountPath: /etc/git-secret
+              readOnly: true
+            - name: git-content
+              mountPath: /data
+        - name: nginx
+          image: ghcr.io/johnnyjoy/nginx-micro:1.29.4-upx
+          volumeMounts:
+            - name: app
+              mountPath: "/conf/nginx.conf"
+              subPath: nginx.conf
+              readOnly: true
+            - name: git-content
+              mountPath: /data
+              readOnly: true
+

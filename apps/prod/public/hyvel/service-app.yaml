@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  namespace: hyvel
+  labels:
+    app.kubernetes.io/name: hyvel
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: hyvel
+    app.kubernetes.io/component: app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 7581
+      targetPort: 80
+  type: ClusterIP
