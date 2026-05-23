@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ts
+  name: app
   namespace: ts
   labels:
     app.kubernetes.io/name: ts
@@ -27,7 +27,7 @@ spec:
             claimName: ts-pvc
       containers:
         - name: ts
-          image: ghcr.io/yourok/torrserver:MatriX.136
+          image: ghcr.io/yourok/torrserver:MatriX.141.1
           env:
             - name: TS_PORT
               value: "7540"

@@ -38,5 +38,5 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: ts
+          name: app
           port: 7540
