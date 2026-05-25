@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vaultwarden
+  name: app
   namespace: vw
   labels:
-    app.kubernetes.io/name: vaultwarden
+    app.kubernetes.io/name: vw
     app.kubernetes.io/component: app
 spec:
   replicas: 1
@@ -12,13 +12,13 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app.kubernetes.io/name: vaultwarden
+      app.kubernetes.io/name: vw
       app.kubernetes.io/component: app
   template:
     metadata:
-      name: vaultwarden
+      name: vw
       labels:
-        app.kubernetes.io/name: vaultwarden
+        app.kubernetes.io/name: vw
         app.kubernetes.io/component: app
     spec:
       volumes:
@@ -26,8 +26,8 @@ spec:
           persistentVolumeClaim:
             claimName: vaultwarden-app-pvc
       containers:
-        - name: vaultwarden
-          image: vaultwarden/server:1.35.7-alpine
+        - name: vw
+          image: vaultwarden/server:1.36.0-alpine
           envFrom:
             - secretRef:
                 name: app

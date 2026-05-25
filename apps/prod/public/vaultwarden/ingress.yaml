@@ -55,7 +55,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: vaultwarden
+          name: app
           port: 7561
 
     - match: Host(`vault.hyvel.eu`)
@@ -67,5 +67,5 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: vaultwarden
+          name: app
           port: 7561
