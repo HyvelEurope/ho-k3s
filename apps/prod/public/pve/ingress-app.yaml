@@ -60,7 +60,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: pve-svc
+          name: app
           port: 8006
           scheme: https
           serversTransport: pve-transport
@@ -75,7 +75,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: pve-svc
+          name: app
           port: 8006
           scheme: https
           serversTransport: pve-transport
