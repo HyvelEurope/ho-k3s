@@ -10,10 +10,15 @@ spec:
             name: hyvel-dns01-issuer-account-key
         solvers:
             - dns01:
-                cloudflare:
-                    apiTokenSecretRef:
-                        name: hyvel-dns01-token
-                        key: api-token
+                webhook:
+                    solverName: porkbun
+                    config:
+                        apiKeySecretRef:
+                            name: hyvel-dns01-token
+                            key: api-key
+                        secretKeySecretRef:
+                            name: hyvel-dns01-token
+                            key: secret-key
 sops:
     age:
         - enc: |
@@ -26,6 +31,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-05-25T07:46:38Z"
-    mac: ENC[AES256_GCM,data:d5GdljZ9Fn+aUqQcnKHoQLZPl6jbrRUA/yolXPpZhkjOUlp4pAOEiZFKOzkKtLd0GJU/nHJqyCLmtYKA0//TTKZK6kDyLb8ao6K6IbV9mpzIzLtxlm4oGGjPAX/gY5jEX0JNsB3clXX/WhlrPQjZBaLnWvAau1qeUVB1z37cn9U=,iv:bseeHLp0dllifPOL9w8MkI+EC6jeexDwv4dPjJf3YhM=,tag:qo2WPrEa4QjV6/7r4adI7g==,type:str]
+    lastmodified: "2026-05-25T10:39:06Z"
+    mac: ENC[AES256_GCM,data:fNfJv86QxeUwfaxdfiazKvxKHyZY4qhgHJcv7iH9dCloc0YuoVMwi5EEZ3CEN/MkKMU6NBnJlsir669riAEEp8eQ425qJMhDxxwgY46qZw1hwKOvgrcFGSmQz290mTjsvl5/wRcw7tKkjhRVlO34blaCuSLYIh10cvim5JsCvrM=,iv:PTLJOyz6oqLF3UIIRPfK8P2EbIZX3KdECpShzheZDzI=,tag:llrHfWH4fiXeJ4nE77CMVA==,type:str]
     version: 3.13.1
