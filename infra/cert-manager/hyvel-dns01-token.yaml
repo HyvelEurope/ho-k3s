@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: hyvel-dns01-token
+    namespace: cert-manager
+type: Opaque
+stringData:
+    api-token: ENC[AES256_GCM,data:zFmV7b8iZrx0e0D+PDNY60xCehOMAHF6MKY9SiMzUAumjr59nG34GA==,iv:MeCcnA5/Db56FFffuKP6W4MfKpGyb7iVVYmk1lrz6QE=,tag:s0srRJ/nPxTZyezvDoTFjA==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBnUFZrQ2dTVXRwK1NlNDd0
+            YndxeGducVIvNDJ2QVJqL05seUg0eFZIZTFJCnJFbEZhQ2hVZ3d6Vm53NGkwZU1l
+            ZFl6TlZpRTUxMmVqU29NSUlHOURncEkKLS0tIG9SV0dnVjdFTzFpRzduaHJPVzhh
+            NWdUU3JrVEdaVmlhUEFXRGgvanlvWEEK5AX574x4c0lcx9FmgK7d2DNWnyrot9Pq
+            ObpQCmo/KeNDKQKO1KLZOz9R33XSMCDjJxVBY6bQgZTCSatZHk56mg==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
+    encrypted_regex: ^(data|stringData)$
+    lastmodified: "2026-05-25T07:45:29Z"
+    mac: ENC[AES256_GCM,data:ZlwNGT5WfN4wERMEGobM8Xv+lOLXZEMjzukr3i9lwQuoOb8r43f1ZGBVHozlqCB4fkz/giuQwvF3M+kVH1U2iAmANCZ2jMd+6JwS4w6lyzKuLd58U8O3N1eKSIyRt7XzbBKZ7ccdLYacZIQ+9bDiJU9VT1zD+u3iQXoNPWWlMPg=,iv:lU9Alh5RvYPxUxcAtVWHag+7lGpM8PFUwM6yDdiIMr8=,tag:PsjwMldsmFv3XWkTLSquuQ==,type:str]
+    version: 3.13.1

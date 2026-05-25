@@ -1,0 +1,31 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+    name: hyvel-dns01-issuer
+spec:
+    acme:
+        email: ENC[AES256_GCM,data:cXZ63+seyqNZ5folvLbsR6ySOmS6EEJQIXrW/w==,iv:YvC/ZmMnAbdBJFA0HZa9aP7YLKFYngmxj99WodqxJ6A=,tag:hto5VppRHgDMffqGiQtfSw==,type:str]
+        server: https://acme-v02.api.letsencrypt.org/directory
+        privateKeySecretRef:
+            name: hyvel-dns01-issuer-account-key
+        solvers:
+            - dns01:
+                cloudflare:
+                    apiTokenSecretRef:
+                        name: hyvel-dns01-token
+                        key: api-token
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYM05ZYWUzVWptM1R4RSs5
+            KzhsZmhROUxlY2t2YTByRmJwM09wZGdvSENrCjN0YSs4ZlJFOVpQUi9UL2JndXZJ
+            R0NEbi85MjBlRFNCWkxTalNnaWIvVlEKLS0tIElUZmZOaHN1b3dJY3JGMVY4VmRu
+            K0c0eFQzS1AxKzlSYjVsTmRES1Ztb2sKy+nxAgfgH9B4F6BVaS6qmNVDNPUTGxrz
+            jzAtNozu6wVo4rTyV8ctRtTW6LL4hz/MWC1r8lC4PG7DVt5UkLyM5w==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
+    encrypted_regex: ^(data|stringData|email)$
+    lastmodified: "2026-05-25T07:46:38Z"
+    mac: ENC[AES256_GCM,data:d5GdljZ9Fn+aUqQcnKHoQLZPl6jbrRUA/yolXPpZhkjOUlp4pAOEiZFKOzkKtLd0GJU/nHJqyCLmtYKA0//TTKZK6kDyLb8ao6K6IbV9mpzIzLtxlm4oGGjPAX/gY5jEX0JNsB3clXX/WhlrPQjZBaLnWvAau1qeUVB1z37cn9U=,iv:bseeHLp0dllifPOL9w8MkI+EC6jeexDwv4dPjJf3YhM=,tag:qo2WPrEa4QjV6/7r4adI7g==,type:str]
+    version: 3.13.1
