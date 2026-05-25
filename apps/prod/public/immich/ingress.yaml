@@ -60,5 +60,5 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: immich
+          name: app
           port: 7571

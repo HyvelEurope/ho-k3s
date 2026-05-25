@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: immich
+  name: app
   namespace: immich
   labels:
     app.kubernetes.io/name: immich
@@ -30,7 +30,7 @@ spec:
             claimName: immich-config-pvc
       containers:
         - name: immich
-          image: ghcr.io/imagegenius/immich:2.5.6-noml
+          image: ghcr.io/imagegenius/immich:2.7.5-noml
           envFrom:
             - secretRef:
                 name: app

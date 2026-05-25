@@ -1,7 +1,7 @@
 apiVersion: k8up.io/v1
 kind: Schedule
 metadata:
-  name: immich
+  name: app
   namespace: immich
 spec:
   backend:
