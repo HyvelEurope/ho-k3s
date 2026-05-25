@@ -8,7 +8,6 @@ metadata:
     app.kubernetes.io/component: app
 spec:
   replicas: 1
-#  enableServiceLinks: false
   strategy:
     type: Recreate
   selector:
@@ -23,9 +22,9 @@ spec:
         app.kubernetes.io/component: app
     spec:
       volumes:
-        - name: config-app
-          configMap:
-            name: config-app
+        - name: app-config
+          secret:
+            secretName: app-config
       containers:
         - name: authelia
           image: authelia/authelia:4.39
@@ -33,7 +32,7 @@ spec:
             - secretRef:
                 name: app
           volumeMounts:
-            - name: config-app
+            - name: app-config
               mountPath: "/config/configuration.yml"
               subPath: configuration.yml
               readOnly: false
