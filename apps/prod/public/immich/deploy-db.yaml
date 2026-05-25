@@ -31,7 +31,7 @@ spec:
             claimName: immich-db-pvc
       containers:
         - name: postgres
-          image: tensorchord/vchord-postgres:pg17-v0.4.3
+          image: tensorchord/vchord-postgres:pg17-v0.5.3
           envFrom:
             - secretRef:
                 name: db
