@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: ocs
+  labels:
+    app.kubernetes.io/name: ocs
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ocs
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: ocs
+      labels:
+        app.kubernetes.io/name: ocs
+        app.kubernetes.io/component: app
+    spec:
+      securityContext:
+        sysctls:
+          - name: net.ipv4.ip_forward
+            value: "1"
+      containers:
+        - name: ocs
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              add: ["NET_ADMIN"]
+          image: quay.io/aminvakil/ocserv:1.2.4
+          volumeMounts:
+            - name: app-config
+              mountPath: "/etc/ocserv/ocserv.conf"
+              subPath: ocserv.conf
+              readOnly: true
+            - name: app-creds
+              mountPath: "/etc/ocserv/ocpasswd"
+              subPath: ocpasswd
+              readOnly: true
+            - name: certificate
+              mountPath: "/etc/ocserv/certs/"
+              readOnly: true
+      volumes:
+        - name: app-config
+          secret:
+            secretName: app-config
+        - name: app-creds
+          secret:
+            secretName: app-creds
+        - name: certificate
+          secret:
+            secretName: certificate

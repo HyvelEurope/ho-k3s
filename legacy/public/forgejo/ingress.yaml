@@ -1,0 +1,81 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: https-security-middleware
+  namespace: forgejo
+spec:
+  headers:
+    frameDeny: true
+    browserXssFilter: true
+    contentTypeNosniff: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    referrerPolicy: no-referrer
+    contentSecurityPolicy: "default-src 'self'; connect-src 'self'; font-src 'self' data:; form-action 'self'; img-src 'self' https: data:; manifest-src 'self' data:; object-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; worker-src 'self';"
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-plain
+  namespace: forgejo
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`git.hyvel.eu`) || Host(`gs.hyvel.eu`)
+      middlewares:
+        - name: traefik-https-redirect
+          namespace: traefik
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-gs
+  namespace: forgejo
+spec:
+  tls:
+    secretName: web-certificate-secret
+    domains:
+      - main: gs.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gs.hyvel.eu`)
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress
+  namespace: forgejo
+spec:
+  tls:
+    secretName: web-certificate-secret
+    domains:
+      - main: git.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`git.hyvel.eu`)
+      middlewares:
+        - name: https-security-middleware
+          namespace: forgejo
+      kind: Rule
+      services:
+        - kind: Service
+          name: forgejo
+          port: 80

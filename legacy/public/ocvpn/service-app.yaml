@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-tcp
+  namespace: ocs
+  labels:
+    app.kubernetes.io/name: ocs
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: ocs
+    app.kubernetes.io/component: app
+  ports:
+    - name: tcp
+      protocol: TCP
+      port: 443
+      targetPort: 7525
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-udp
+  namespace: ocs
+  labels:
+    app.kubernetes.io/name: ocs
+    app.kubernetes.io/component: app
+spec:
+  selector:
+    app.kubernetes.io/name: ocs
+    app.kubernetes.io/component: app
+  ports:
+    - name: udp
+      protocol: UDP
+      port: 9545
+      targetPort: 9545
+  loadBalancerIP: 192.168.50.2
+  type: LoadBalancer

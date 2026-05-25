@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: forgejo
+  labels:
+    app.kubernetes.io/name: forgejo
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: forgejo
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: forgejo
+      labels:
+        app.kubernetes.io/name: forgejo
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: forgejo-pvc
+      containers:
+        - name: forgejo
+          image: codeberg.org/forgejo/forgejo:11
+          env:
+            - name: FORGEJO__database__DB_TYPE
+              value: postgres
+            - name: FORGEJO__database__HOST
+              value: forgejo-db-rw:5432
+            - name: FORGEJO__database__NAME
+              value: app
+            - name: FORGEJO__database__USER
+              value: app
+            - name: FORGEJO__database__PASSWD
+              value: FILLME
+            - name: FORGEJO__service__DISABLE_REGISTRATION
+              value: "true"
+            - name: FORGEJO__openid__ENABLE_OPENID_SIGNIN
+              value: "false"
+            - name: FORGEJO__server__START_SSH_SERVER
+              value: "true"
+            - name: FORGEJO__server__SSH_LISTEN_PORT
+              value: "7660"
+            - name: FORGEJO__server__SSH_PORT
+              value: "22"
+            - name: FORGEJO__server__DOMAIN
+              value: "git.hyvel.eu"
+            - name: FORGEJO__server__SSH_DOMAIN
+              value: "gs.hyvel.eu"
+            - name: FORGEJO__server__OFFLINE_MODE
+              value: "false"
+          volumeMounts:
+            - name: data
+              mountPath: "/data"
+          livenessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
