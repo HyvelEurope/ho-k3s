@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - bgp-adv.yaml
+  - bgp-cluster-config.yaml
+  - bgp-peer-config.yaml
+  - helm-release.yaml
+  - helm-repo.yaml
+  - lb-pool.yaml
