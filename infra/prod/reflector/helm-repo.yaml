@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: reflector
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/emberstack/helm-charts/reflector
+  interval: 1h
