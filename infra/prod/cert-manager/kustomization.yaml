@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - helm-release.yaml
+  - helm-repo.yaml
+  - hyvel-dns01-issuer.yaml
+  - hyvel-dns01-token.yaml
+  - wildcard-ho-hyvel-certificate.yaml
+  - wildcard-hyvel-certificate.yaml

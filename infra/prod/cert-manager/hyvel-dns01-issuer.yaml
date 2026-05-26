@@ -4,7 +4,7 @@ metadata:
     name: hyvel-dns01-issuer
 spec:
     acme:
-        email: ENC[AES256_GCM,data:cXZ63+seyqNZ5folvLbsR6ySOmS6EEJQIXrW/w==,iv:YvC/ZmMnAbdBJFA0HZa9aP7YLKFYngmxj99WodqxJ6A=,tag:hto5VppRHgDMffqGiQtfSw==,type:str]
+        email: ENC[AES256_GCM,data:/kyA1JePKqEtFJ2QnB1tjHQvJiYtbV7vIkihqg==,iv:cCcbv22teLVBjafR8jgSF/DivTdGu0DBhkWREI7pC+s=,tag:ytdQ5MiyQiRmiYvhlMZcJQ==,type:str]
         server: https://acme-v02.api.letsencrypt.org/directory
         privateKeySecretRef:
             name: hyvel-dns01-issuer-account-key
@@ -12,6 +12,7 @@ spec:
             - dns01:
                 webhook:
                     solverName: porkbun
+                    groupName: hyvel
                     config:
                         apiKeySecretRef:
                             name: hyvel-dns01-token
@@ -23,14 +24,14 @@ sops:
     age:
         - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBYM05ZYWUzVWptM1R4RSs5
-            KzhsZmhROUxlY2t2YTByRmJwM09wZGdvSENrCjN0YSs4ZlJFOVpQUi9UL2JndXZJ
-            R0NEbi85MjBlRFNCWkxTalNnaWIvVlEKLS0tIElUZmZOaHN1b3dJY3JGMVY4VmRu
-            K0c0eFQzS1AxKzlSYjVsTmRES1Ztb2sKy+nxAgfgH9B4F6BVaS6qmNVDNPUTGxrz
-            jzAtNozu6wVo4rTyV8ctRtTW6LL4hz/MWC1r8lC4PG7DVt5UkLyM5w==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTTGpCYWthTWw1Vm1nTFdx
+            dEhsQmR2Z1VjZlU5eVIvVXg5M09jdDlNa0FZCjVCeFJJRkJQZzdaclFIWkxGb2FH
+            d2dNMmQvcEpab25GNlhFWXdXaGg4YWMKLS0tIEVWTW1zVzh3Wlc2N29VWUJZWU1j
+            ZlBIWlhGblhtU2ZqUTU0TVBKMUY5TzgK/rHWejoiiVyjaL8ASq5FxrJfdAylcZ12
+            yza5++rtQrT4itbwhjqf1Jno1vbBvdfuKq/zl4R5dHS9I17u/VvoJQ==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-05-25T10:39:06Z"
-    mac: ENC[AES256_GCM,data:fNfJv86QxeUwfaxdfiazKvxKHyZY4qhgHJcv7iH9dCloc0YuoVMwi5EEZ3CEN/MkKMU6NBnJlsir669riAEEp8eQ425qJMhDxxwgY46qZw1hwKOvgrcFGSmQz290mTjsvl5/wRcw7tKkjhRVlO34blaCuSLYIh10cvim5JsCvrM=,iv:PTLJOyz6oqLF3UIIRPfK8P2EbIZX3KdECpShzheZDzI=,tag:llrHfWH4fiXeJ4nE77CMVA==,type:str]
+    lastmodified: "2026-05-26T04:33:39Z"
+    mac: ENC[AES256_GCM,data:0MDtOcqraMAPfXu1A9fzNhbdbhV4nkMYMvboYImqZQgm+YLdhLaX+iD4AUSOYNTz6vN0aNVoGp1R3BYWUxqfu6DPrcyTQGQm4lER34hM3+0OoBQamRt5viD28zRmarCLxcxj7KIkpzi7TyDvF6wTLWlanSHf7Yf5pn7wiDsyoLo=,iv:SMwVRaV9wSY0p0rWAYsIJ81rTVFiokSwABfZmGRC61o=,tag:PDKXbmuRT+Da6CvEbkJm+w==,type:str]
     version: 3.13.1
