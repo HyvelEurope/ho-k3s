@@ -15,8 +15,8 @@ spec:
             clusters:
                 - url: https://pve.ho.hyvel.eu:8006/api2/json
                   insecure: false
-                  token_id: ENC[AES256_GCM,data:E6FdR7rjPXZmRq0WKsO64ZmM65E5Ig==,iv:QQPL3hdvfk7SsR64tFyoq8PBuhz4QFNwT6ny0q6vYOE=,tag:kHjjl++OskreYb7eI5+57Q==,type:str]
-                  token_secret: ENC[AES256_GCM,data:qIYnLOSe3cfmTV7ebztTzbCH2hEgRDQft7fcgx+9Nw2DDNM+,iv:vCYtLFse2+MAh2ySYrNDtORnS7innq/JAAcQmg6R3ms=,tag:JAJ0w0pv/fzcDmBaDDMeoQ==,type:str]
+                  token_id: ENC[AES256_GCM,data:9+jMUzsDdUmwWpuqsLzH5NHu2b1d1w==,iv:jTnCtHvASEXGpu/YO4PGY6nA0STxRrDkLhmvC7ca6Ws=,tag:p1lKGhf0OlN9fgv8YgR6TQ==,type:str]
+                  token_secret: ENC[AES256_GCM,data:jPuWyVyI1dGgMcGJpHIK9Kr9VmJiYTvchTOS9jxRDB51XQ0H,iv:2WlpjxG8YZ1JlS/GOzUbF836wQEy4q+j6luTSDfDNrE=,tag:LooPpbJR3Wm8bSWZ03t5pA==,type:str]
                   region: hone
         storageClass:
             - name: proxmox-data-sc-0
@@ -36,14 +36,14 @@ sops:
     age:
         - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDcGw4T1FTVHhGMThvTDNo
-            RTJBQ3JRd1FEK1NuUkNnOFlDNEdqaFRvZW13ClNaVTVWUkpPWE1TRGRpdnljRDVT
-            dXZPUE5RNzlWWEhYRXpYOHFNNVZrdk0KLS0tIFdKK3ZUa0p5RSsrTTBxdll3UGNa
-            cjRyMzcwWmRSQVlOVUxvcVFVcjBFZzAKwdsrlHtmLCUD/F6pA52Gri2LQ/GCphGw
-            VFG/jOrPK1dkaoCDrHmCd/7pf31O0FG+sHpNSgvSDp8bQ/h4ZGPiRg==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOUytwbk1ldENvNnQ1bUJl
+            YjloaVdPRXM5bXZUME9vcnlsZHFFWkhLcWpJCkhoTjFCcUcxWE5kektPN0M2eENx
+            Nmx0dkZQK2QwWW95MllvQlBvM2J5cTQKLS0tIFQ0ZytnRGc3Q29EUFhOT0VMM1dC
+            RzNBVDNVUlAvWlFZS0pmOURmUTB1d2MKlbCjZ3MGfNzkPreJHlZrYabJwXKrXSOj
+            5QAXct7f/K+1ACev7VNSr34aswOh9VnXj9+Qbq8pw9qyi69OKIHAUQ==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email|token_id|token_secret)$
-    lastmodified: "2026-05-26T09:20:12Z"
-    mac: ENC[AES256_GCM,data:HRycBiPV5DE1CxCLvfP5m4wqA1AuYWeale/vPLF7pV4n8L9CVaky7oR4LlKb65oSbOwac4gF+K7I/yDa793Mwzj8Lf4nWfTBScs/lF68by7suFA8r/+nD/WXbvAe6KGWpzHH3PWGjURrYRWLw9yNbbxYQAeAI8R+SoPs2E5/mvM=,iv:vd3LJJfxIxoZPU4m35IaCVn2pYYc68hlk/eE6Vlukrw=,tag:xs2bYGHazIoJXMzVUbjPsQ==,type:str]
+    lastmodified: "2026-05-26T09:36:12Z"
+    mac: ENC[AES256_GCM,data:ZENoPGTeWaJ5RdMRfB+vhbcvgm+5RKpFyrCvI/frq9hQAmOIJr+0uyp9B8QlM+++3LTSvaN3A4byj37C9Ep/A3VqyxjspOkALyUbb67J3AuidXWVADKR060oG5UrMepXE2bPUh84xzc5rJxIzC8kNOpF1/MplGNPhBYa07uuOlM=,iv:6rCTbZs5qx4I9C7svMYq4lBvJzHCMf80ZHzYzuXXWV0=,tag:Y9v3C2AvDqxUoJLZwi7/BQ==,type:str]
     version: 3.13.1
