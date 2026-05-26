@@ -3,9 +3,9 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
+  - helm-repo.yaml
+  - helm-release.yaml
   - bgp-adv.yaml
   - bgp-cluster-config.yaml
   - bgp-peer-config.yaml
-  - helm-release.yaml
-  - helm-repo.yaml
   - lb-pool.yaml

@@ -3,8 +3,8 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - helm-release.yaml
   - helm-repo.yaml
+  - helm-release.yaml
   - hyvel-dns01-issuer.yaml
   - hyvel-dns01-token.yaml
   - wildcard-ho-hyvel-certificate.yaml

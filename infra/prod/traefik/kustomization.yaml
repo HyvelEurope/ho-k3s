@@ -3,8 +3,8 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - helm-release.yaml
   - helm-repo.yaml
+  - helm-release.yaml
   - ingress.yaml
   - ./middlewares
   - tlsoption.yaml
