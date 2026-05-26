@@ -5,6 +5,7 @@ metadata:
     namespace: csi-proxmox
 spec:
     interval: 10m
+    releaseName: proxmox-csi-plugin
     chartRef:
         kind: OCIRepository
         name: csi-proxmox
