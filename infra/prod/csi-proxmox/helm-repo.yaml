@@ -1,8 +1,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: csi-proxmox
   namespace: flux-system
 spec:
-  type: "oci"
-  url: oci://ghcr.io/sergelogvinov/charts
+  url: oci://ghcr.io/sergelogvinov/charts/proxmox-csi-plugin
+  interval: 1h
+  ref:
+    tag: "0.5.7"

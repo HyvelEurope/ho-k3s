@@ -5,21 +5,17 @@ metadata:
     namespace: csi-proxmox
 spec:
     interval: 10m
-    chart:
-        spec:
-            chart: proxmox-csi-plugin
-            version: 0.5.7
-            sourceRef:
-                kind: HelmRepository
-                name: csi-proxmox
-                namespace: flux-system
+    chartRef:
+        kind: OCIRepository
+        name: csi-proxmox
+        namespace: flux-system
     values:
         config:
             clusters:
                 - url: https://pve.ho.hyvel.eu:8006/api2/json
                   insecure: false
-                  token_id: ENC[AES256_GCM,data:RD12V6xKNZFS6rSADY5roh0gdaxZ4w==,iv:Yfbttv9aGWImhtQZCOi9XIRJ4w5r4N6tPooqYejFAaU=,tag:JgVGInz4ulIMrOsmYRC0nA==,type:str]
-                  token_secret: ENC[AES256_GCM,data:uUXLI2Dxahv2hkooPs0T3LIJ99twMSgw0orlHGCQIi+uUDNN,iv:zeWHrQXIzms9iwIpgEDBbJisAywZOzWng9rRxFmglEw=,tag:GF/rjMlfBihsdia+L4uesQ==,type:str]
+                  token_id: ENC[AES256_GCM,data:E6FdR7rjPXZmRq0WKsO64ZmM65E5Ig==,iv:QQPL3hdvfk7SsR64tFyoq8PBuhz4QFNwT6ny0q6vYOE=,tag:kHjjl++OskreYb7eI5+57Q==,type:str]
+                  token_secret: ENC[AES256_GCM,data:qIYnLOSe3cfmTV7ebztTzbCH2hEgRDQft7fcgx+9Nw2DDNM+,iv:vCYtLFse2+MAh2ySYrNDtORnS7innq/JAAcQmg6R3ms=,tag:JAJ0w0pv/fzcDmBaDDMeoQ==,type:str]
                   region: hone
         storageClass:
             - name: proxmox-data-sc-0
@@ -39,14 +35,14 @@ sops:
     age:
         - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBaYk5KanBjR3FUbmxqOTJE
-            Vm0xSVZkenVFTC90dTRFUytxV3htOFlPNHg0CnBjZ3h5cGI5UWcyazhTYVdYUGdu
-            TEJaaTVvc3E2eDRETlJIT3hxWE5WelEKLS0tIFNIT2pEWlp4dGI5MG5RL3d3aHY3
-            Qk5UYkpFTFZweUd0eWNxVkNnRUZFWmMKYeYLrcBeX2jso/8hYb5rVn568YE6NWa6
-            BCPg3GpJV+Ia0yrW+NvZay1lb7ISIZ0lhR5BxjQJDeEVS7INFe0mug==
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDcGw4T1FTVHhGMThvTDNo
+            RTJBQ3JRd1FEK1NuUkNnOFlDNEdqaFRvZW13ClNaVTVWUkpPWE1TRGRpdnljRDVT
+            dXZPUE5RNzlWWEhYRXpYOHFNNVZrdk0KLS0tIFdKK3ZUa0p5RSsrTTBxdll3UGNa
+            cjRyMzcwWmRSQVlOVUxvcVFVcjBFZzAKwdsrlHtmLCUD/F6pA52Gri2LQ/GCphGw
+            VFG/jOrPK1dkaoCDrHmCd/7pf31O0FG+sHpNSgvSDp8bQ/h4ZGPiRg==
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email|token_id|token_secret)$
-    lastmodified: "2026-05-26T08:18:30Z"
-    mac: ENC[AES256_GCM,data:RRqZznoB1uCmFCNF8WPh9epZlz34zHpbAM9+AHf891pK2HBO9tOEDf9fpZVTJyThowb9xn9fMdEW1LmcCihvT+YfX4aQKpOVTJm7UU/RvJpC0BEgg7hE65itI1353E4izVKZbFDoKsfKo0S4pAVtUz9cYZagBL+ZQlxJd4gGK9E=,iv:3VD2Sd19olp7stMesvcomIN8n1P7RCsncVYGzZltIk0=,tag:DqVlTr1rnvdaE1idyfm1Cw==,type:str]
+    lastmodified: "2026-05-26T09:20:12Z"
+    mac: ENC[AES256_GCM,data:HRycBiPV5DE1CxCLvfP5m4wqA1AuYWeale/vPLF7pV4n8L9CVaky7oR4LlKb65oSbOwac4gF+K7I/yDa793Mwzj8Lf4nWfTBScs/lF68by7suFA8r/+nD/WXbvAe6KGWpzHH3PWGjURrYRWLw9yNbbxYQAeAI8R+SoPs2E5/mvM=,iv:vd3LJJfxIxoZPU4m35IaCVn2pYYc68hlk/eE6Vlukrw=,tag:xs2bYGHazIoJXMzVUbjPsQ==,type:str]
     version: 3.13.1
