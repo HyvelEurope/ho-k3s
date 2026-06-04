@@ -27,7 +27,7 @@ spec:
             name: app
       containers:
         - name: nginx
-          image: ghcr.io/johnnyjoy/nginx-micro:1.29.5-upx
+          image: ghcr.io/johnnyjoy/nginx-micro:1.29.7-upx
           volumeMounts:
             - name: app
               mountPath: "/conf/nginx.conf"
