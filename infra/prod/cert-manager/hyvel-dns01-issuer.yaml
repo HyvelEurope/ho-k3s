@@ -12,7 +12,7 @@ spec:
             - dns01:
                 webhook:
                     solverName: porkbun
-                    groupName: hyvel
+                    groupName: acme.mycompany.com
                     config:
                         apiKeySecretRef:
                             name: hyvel-dns01-token
@@ -32,6 +32,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-05-26T04:33:39Z"
-    mac: ENC[AES256_GCM,data:0MDtOcqraMAPfXu1A9fzNhbdbhV4nkMYMvboYImqZQgm+YLdhLaX+iD4AUSOYNTz6vN0aNVoGp1R3BYWUxqfu6DPrcyTQGQm4lER34hM3+0OoBQamRt5viD28zRmarCLxcxj7KIkpzi7TyDvF6wTLWlanSHf7Yf5pn7wiDsyoLo=,iv:SMwVRaV9wSY0p0rWAYsIJ81rTVFiokSwABfZmGRC61o=,tag:PDKXbmuRT+Da6CvEbkJm+w==,type:str]
+    lastmodified: "2026-06-09T16:08:22Z"
+    mac: ENC[AES256_GCM,data:OOw2QLllYYVqTt3toAsGGyMnzHiCs+RZk+5P7aHRKdP8wZh10M1Xn32ki35EwGzIu/XZUhZHIX/zU+WHAy2u0uwSEu2herD+eqEXDOvYa7rF65FcQpd5fTGhHi2I7tqJ4vJWoG5qHgDA1ZfP3vtfdkHbvtqL2EDxXu47TVpcH7A=,iv:a7ZwdJe/3MqTpDJGcyBo1E9UByg4OOw+UXr51ubgyVo=,tag:4tES0drWpPVl9NPYLZjM6g==,type:str]
     version: 3.13.1
