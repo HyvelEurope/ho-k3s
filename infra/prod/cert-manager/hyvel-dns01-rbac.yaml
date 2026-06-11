@@ -20,7 +20,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: porkbun-key:reader
+  name: hyvel-dns01-token-reader
 subjects:
   - apiGroup: ""
     kind: ServiceAccount
