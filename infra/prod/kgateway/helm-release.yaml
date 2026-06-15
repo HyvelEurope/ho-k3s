@@ -8,13 +8,8 @@ spec:
   releaseName: kgateway-crds
   chartRef:
     kind: OCIRepository
-    name: kgateway
+    name: kgateway-crds
     namespace: flux-system
-
-  chart:
-    spec:
-      chart: kgateway-crds
-      version: "2.3.1"
 
 ---
 
@@ -26,15 +21,7 @@ metadata:
 spec:
   interval: 10m
   releaseName: kgateway
-  dependsOn:
-    - name: kgateway-crds
-
   chartRef:
     kind: OCIRepository
     name: kgateway
     namespace: flux-system
-
-  chart:
-    spec:
-      chart: kgateway
-      version: "2.3.1"
