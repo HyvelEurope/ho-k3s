@@ -4,3 +4,5 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.5.1/standard-install.yaml
+  - helm-repo.yaml
+  - helm-release.yaml
