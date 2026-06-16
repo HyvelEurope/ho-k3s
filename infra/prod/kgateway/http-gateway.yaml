@@ -17,7 +17,7 @@ spec:
           from: All
     - protocol: HTTPS
       port: 443
-      name: https-terminate
+      name: https
       allowedRoutes:
         namespaces:
           from: All
