@@ -5,3 +5,4 @@ resources:
   - namespace.yaml
   - service-app.yaml
   - ingress-app.yaml
+  - route-app.yaml
