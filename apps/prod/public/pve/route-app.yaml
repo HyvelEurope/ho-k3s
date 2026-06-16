@@ -58,3 +58,21 @@ spec:
               - name: Permissions-Policy
                 value: "camera=(), microphone=(), geolocation=()"
             remove: [ "x-powered-by" ]
+
+---
+
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: TrafficPolicy
+metadata:
+  name: app
+  namespace: pve
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: app
+
+  extAuth:
+    extensionRef:
+      name: anubis
+      namespace: kgateway

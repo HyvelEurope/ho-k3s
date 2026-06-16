@@ -14,3 +14,4 @@ resources:
   - service-app.yaml
   - service-db.yaml
   - route-app.yaml
+  - gw-grant.yaml

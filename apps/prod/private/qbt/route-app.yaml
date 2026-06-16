@@ -58,3 +58,21 @@ spec:
               - name: Permissions-Policy
                 value: "camera=(), microphone=(), geolocation=()"
             remove: [ "Server" ]
+
+---
+
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: TrafficPolicy
+metadata:
+  name: app
+  namespace: qbt
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: app
+
+  extAuth:
+    extensionRef:
+      name: authelia
+      namespace: kgateway
