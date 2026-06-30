@@ -36,9 +36,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
+
   dependsOn:
-    - name: infra-prod
+    - name: infra-prod-extras
       namespace: flux-system
+
   decryption:
     provider: sops
     secretRef:
