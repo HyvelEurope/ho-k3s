@@ -42,9 +42,6 @@ spec:
     - matches:
       - path:
           type: PathPrefix
-          value: /
-      - path:
-          type: PathPrefix
           value: /admin
       backendRefs:
         - name: app-web
