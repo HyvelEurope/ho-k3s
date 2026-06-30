@@ -32,7 +32,7 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: https
+      sectionName: https-ho-hyvel
   hostnames:
     - "ldap.ho.hyvel.eu"
   rules:

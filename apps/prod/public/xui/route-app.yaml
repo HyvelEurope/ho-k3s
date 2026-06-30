@@ -10,9 +10,9 @@ spec:
       sectionName: http
   hostnames:
     - "xui.hyvel.eu"
-    - "xr.hyvel.eu"
-    - "xsu.hyvel.eu"
-    - "xp.hyvel.eu"
+    - "xr.io.hyvel.eu"
+    - "xsu.io.hyvel.eu"
+    - "xp.io.hyvel.eu"
   rules:
     - matches:
       - path:
@@ -35,7 +35,7 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: https
+      sectionName: https-hyvel
   hostnames:
     - "xui.hyvel.eu"
   rules:
@@ -68,7 +68,7 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: tls
+      sectionName: tls-mimic-1
   hostnames:
     - "www.peatus.ee"
   rules:
@@ -87,9 +87,9 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: tls
+      sectionName: tls-io-hyvel
   hostnames:
-    - "xp.hyvel.eu"
+    - "xp.io.hyvel.eu"
   rules:
     - backendRefs:
       - name: app
@@ -106,9 +106,9 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: tls
+      sectionName: tls-io-hyvel
   hostnames:
-    - "xsu.hyvel.eu"
+    - "xsu.io.hyvel.eu"
   rules:
     - backendRefs:
       - name: app

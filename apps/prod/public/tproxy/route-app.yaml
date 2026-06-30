@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: tls
+      sectionName: tls-mimic-2
   hostnames:
     - "www.klick.ee"
   rules:

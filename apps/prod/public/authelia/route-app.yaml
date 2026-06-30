@@ -32,7 +32,7 @@ spec:
   parentRefs:
     - name: main-gw
       namespace: kgateway
-      sectionName: https
+      sectionName: https-hyvel
   hostnames:
     - "auth.hyvel.eu"
   rules:

@@ -16,18 +16,40 @@ spec:
         namespaces:
           from: All
 
-    - name: tls
+    - name: tls-io-hyvel
       protocol: TLS
       port: 443
+      hostname: "*.io.hyvel.eu"
       allowedRoutes:
         namespaces:
           from: All
       tls:
         mode: Passthrough
 
-    - name: https
+    - name: tls-mimic-1
+      protocol: TLS
+      port: 443
+      hostname: "www.peatus.ee"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Passthrough
+
+    - name: tls-mimic-2
+      protocol: TLS
+      port: 443
+      hostname: "www.klick.ee"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Passthrough
+
+    - name: https-hyvel
       protocol: HTTPS
       port: 443
+      hostname: "*.hyvel.eu"
       allowedRoutes:
         namespaces:
           from: All
@@ -36,5 +58,16 @@ spec:
         certificateRefs:
           - kind: Secret
             name: wildcard-hyvel-certificate-secret
+
+    - name: https-ho-hyvel
+      protocol: HTTPS
+      port: 443
+      hostname: "*.ho.hyvel.eu"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
           - kind: Secret
             name: wildcard-ho-hyvel-certificate-secret
