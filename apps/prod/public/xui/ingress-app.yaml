@@ -62,7 +62,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: app
+          name: app-web
           port: 7700
           scheme: https
           serversTransport: xui-transport
@@ -75,7 +75,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: app
+          name: app-web
           port: 7560
           scheme: https
           serversTransport: xui-transport

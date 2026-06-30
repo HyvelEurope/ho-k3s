@@ -38,40 +38,31 @@ spec:
       sectionName: https
   hostnames:
     - "xui.hyvel.eu"
-    - "xr.hyvel.eu"
-    - "xsu.hyvel.eu"
-    - "xp.hyvel.eu"
   rules:
     - matches:
       - path:
-          type: PathPrefix
-          value: /admin
+        type: PathPrefix
+        value: /admin
       backendRefs:
-        - name: app
-          port: 7581
-      filters:
-        - type: ResponseHeaderModifier
-          responseHeaderModifier:
-            add:
-              - name: Strict-Transport-Security
-                value: "max-age=63072000; includeSubDomains; preload"
-              - name: X-Frame-Options
-                value: "SAMEORIGIN"
-              - name: X-Content-Type-Options
-                value: "nosniff"
-              - name: Referrer-Policy
-                value: "strict-origin-when-cross-origin"
-              - name: Permissions-Policy
-                value: "camera=(), microphone=(), geolocation=()"
-            remove: [ "Server" ]
-
+        - name: app-web
+          port: 7700
+    - matches:
+      - path:
+        type: PathPrefix
+        value: /am75xinif2xqk5zn8fcm
+      - path:
+          type: PathPrefix
+          value: /qgr47w9s9ec4f7hgr2oy
+      backendRefs:
+        - name: app-web
+          port: 7560
 
 ---
 
 apiVersion: gateway.networking.k8s.io/v1
 kind: TLSRoute
 metadata:
-  name: app
+  name: app-vless-1
   namespace: xui
 spec:
   parentRefs:
@@ -79,11 +70,49 @@ spec:
       namespace: kgateway
       sectionName: tls
   hostnames:
-    - "www.klick.ee"
+    - "www.peatus.ee"
   rules:
     - backendRefs:
       - name: app
-        port: 7770
+        port: 7554
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: TLSRoute
+metadata:
+  name: app-vless-2
+  namespace: xui
+spec:
+  parentRefs:
+    - name: main-gw
+      namespace: kgateway
+      sectionName: tls
+  hostnames:
+    - "xp.hyvel.eu"
+  rules:
+    - backendRefs:
+      - name: app
+        port: 7555
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: TLSRoute
+metadata:
+  name: app-vless-3
+  namespace: xui
+spec:
+  parentRefs:
+    - name: main-gw
+      namespace: kgateway
+      sectionName: tls
+  hostnames:
+    - "xsu.hyvel.eu"
+  rules:
+    - backendRefs:
+      - name: app
+        port: 7556
 
 ---
 
