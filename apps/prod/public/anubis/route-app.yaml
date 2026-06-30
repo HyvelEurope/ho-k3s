@@ -5,7 +5,7 @@ metadata:
   namespace: anubis
 spec:
   parentRefs:
-    - name: http
+    - name: main-gw
       namespace: kgateway
       sectionName: http
   hostnames:
@@ -30,7 +30,7 @@ metadata:
   namespace: anubis
 spec:
   parentRefs:
-    - name: http
+    - name: main-gw
       namespace: kgateway
       sectionName: https
   hostnames:
