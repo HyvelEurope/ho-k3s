@@ -1,10 +1,11 @@
-apiVersion: v1
-kind: Service
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: Backend
 metadata:
   name: app
   namespace: pve
 spec:
-  externalName: pve.ho.hyvel.eu
-  ports:
-    - port: 8006
-  type: ExternalName
+  type: Static
+  static:
+    hosts:
+    - host: pve.ho.hyvel.eu
+      port: 8006

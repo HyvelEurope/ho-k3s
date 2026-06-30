@@ -128,3 +128,18 @@ spec:
     name: app
   upstreamProxyProtocol:
     version: V2
+
+---
+
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: BackendConfigPolicy
+metadata:
+  name: app-tls
+  namespace: xui
+spec:
+  targetRefs:
+  - group: ""
+    kind: Service
+    name: app-web
+  tls:
+    insecureSkipVerify: true
