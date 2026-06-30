@@ -41,15 +41,15 @@ spec:
   rules:
     - matches:
       - path:
-        type: PathPrefix
-        value: /admin
+          type: PathPrefix
+          value: /admin
       backendRefs:
         - name: app-web
           port: 7700
     - matches:
       - path:
-        type: PathPrefix
-        value: /am75xinif2xqk5zn8fcm
+          type: PathPrefix
+          value: /am75xinif2xqk5zn8fcm
       - path:
           type: PathPrefix
           value: /qgr47w9s9ec4f7hgr2oy
