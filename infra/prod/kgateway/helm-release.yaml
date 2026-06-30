@@ -19,6 +19,9 @@ metadata:
   name: kgateway
   namespace: kgateway
 spec:
+  dependsOn:
+    - name: kgateway-crds
+      namespace: kgateway
   interval: 10m
   releaseName: kgateway
   chartRef:
