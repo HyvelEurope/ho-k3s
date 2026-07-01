@@ -27,7 +27,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`xui.hyvel.eu`) || Host(`xr.hyvel.eu`) || Host(`xsu.hyvel.eu`) || Host(`xp.hyvel.eu`)
+    - match: Host(`xui.hyvel.eu`) || Host(`xsu.hyvel.eu`) || Host(`xp.hyvel.eu`)
       middlewares:
         - name: traefik-https-redirect
           namespace: traefik
@@ -53,8 +53,6 @@ spec:
   routes:
     - match: Host(`xui.hyvel.eu`) && PathPrefix(`/admin`)
       middlewares:
-        - name: anubis
-          namespace: traefik
         - name: security-headers
           namespace: xui
         - name: compress
@@ -62,7 +60,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: app-web
+          name: app
           port: 7700
           scheme: https
           serversTransport: xui-transport
@@ -75,7 +73,7 @@ spec:
       kind: Rule
       services:
         - kind: Service
-          name: app-web
+          name: app
           port: 7560
           scheme: https
           serversTransport: xui-transport

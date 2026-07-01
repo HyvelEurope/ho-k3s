@@ -7,4 +7,3 @@ resources:
   - deploy-app.yaml
   - service-app.yaml
   - ingress-app.yaml
-  - route-app.yaml

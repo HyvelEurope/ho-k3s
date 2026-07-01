@@ -9,5 +9,4 @@ resources:
   - service-cache.yaml
   - service-app.yaml
   - ingress-app.yaml
-  - route-app.yaml
   - gw-grant.yaml

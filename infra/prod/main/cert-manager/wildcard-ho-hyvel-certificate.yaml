@@ -16,4 +16,4 @@ spec:
     - "*.ho.hyvel.eu"
   secretTemplate:
     annotations:
-      replicator.v1.mittwald.de/replicate-to: "traefik,kgateway,pve,qbt,ts,lldap,scanjs"
+      replicator.v1.mittwald.de/replicate-to: "traefik,pve,qbt,ts,lldap,scanjs"

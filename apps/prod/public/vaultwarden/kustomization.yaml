@@ -13,4 +13,3 @@ resources:
   - secret-db.yaml
   - service-app.yaml
   - service-db.yaml
-  - route-app.yaml

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-web
+  name: app
   namespace: xui
   labels:
     app.kubernetes.io/name: xui
@@ -17,23 +17,6 @@ spec:
     - name: web-sub
       protocol: TCP
       port: 7560
-  type: ClusterIP
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: app
-  namespace: xui
-  labels:
-    app.kubernetes.io/name: xui
-    app.kubernetes.io/component: app
-spec:
-  selector:
-    app.kubernetes.io/name: xui
-    app.kubernetes.io/component: app
-  ports:
     - name: vless-1
       protocol: TCP
       port: 7554
@@ -44,7 +27,6 @@ spec:
       protocol: TCP
       port: 7556
   type: ClusterIP
-
 
 ---
 

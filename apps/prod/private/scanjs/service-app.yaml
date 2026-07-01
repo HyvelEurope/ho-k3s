@@ -1,11 +1,10 @@
-apiVersion: gateway.kgateway.dev/v1alpha1
-kind: Backend
+apiVersion: v1
+kind: Service
 metadata:
   name: app
   namespace: scanjs
 spec:
-  type: Static
-  static:
-    hosts:
-      - host: 192.168.0.51
-        port: 8080
+  externalName: 192.168.0.51
+  ports:
+    - port: 8080
+  type: ExternalName
