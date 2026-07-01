@@ -14,7 +14,7 @@ spec:
     name: flux-system
 
   dependsOn:
-    - name: infra-prod-extras
+    - name: infra-prod-main
       namespace: flux-system
 
   decryption:
@@ -40,7 +40,7 @@ spec:
     name: flux-system
 
   dependsOn:
-    - name: infra-prod-extras
+    - name: infra-prod-main
       namespace: flux-system
 
   decryption:
