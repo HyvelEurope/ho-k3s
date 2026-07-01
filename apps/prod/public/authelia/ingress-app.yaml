@@ -66,8 +66,6 @@ spec:
           port: 7702
     - match: Host(`auth.hyvel.eu`)
       middlewares:
-        - name: anubis
-          namespace: traefik
         - name: security-headers
           namespace: authelia
         - name: compress

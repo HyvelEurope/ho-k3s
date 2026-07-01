@@ -66,8 +66,6 @@ spec:
           serversTransport: pve-transport
     - match: Host(`pve.hyvel.eu`)
       middlewares:
-        - name: anubis
-          namespace: traefik
         - name: security-headers
           namespace: pve
         - name: compress
