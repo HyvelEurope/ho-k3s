@@ -53,6 +53,8 @@ spec:
   routes:
     - match: Host(`xui.hyvel.eu`) && PathPrefix(`/admin`)
       middlewares:
+        - name: anubis
+          namespace: traefik
         - name: security-headers
           namespace: xui
         - name: compress
