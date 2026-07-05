@@ -93,7 +93,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.peatus.ee`)
+    - match: HostSNI(`www.edel.ee`)
       services:
         - name: app
           port: 7554

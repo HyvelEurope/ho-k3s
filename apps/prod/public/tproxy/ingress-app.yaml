@@ -9,7 +9,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.klick.ee`)
+    - match: HostSNI(`www.linnahall.ee`)
       services:
         - name: app
           port: 7770
