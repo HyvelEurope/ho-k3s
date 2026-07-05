@@ -46,20 +46,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`vault.hyvel.eu`) && PathRegexp(`^.*\.(woff2?|ttf|eot|otf)$`)
-      middlewares:
-        - name: security-headers
-          namespace: vw
-        - name: compress
-          namespace: traefik
-      kind: Rule
-      services:
-        - kind: Service
-          name: app
-          port: 7561
-
     - match: Host(`vault.hyvel.eu`)
       middlewares:
+        - name: anubis
+          namespace: traefik
         - name: security-headers
           namespace: vw
         - name: compress

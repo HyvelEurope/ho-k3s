@@ -51,19 +51,6 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`pve.hyvel.eu`) && PathRegexp(`^.*\.(woff2?|ttf|eot|otf)$`)
-      middlewares:
-        - name: security-headers
-          namespace: pve
-        - name: compress
-          namespace: traefik
-      kind: Rule
-      services:
-        - kind: Service
-          name: app
-          port: 8006
-          scheme: https
-          serversTransport: pve-transport
     - match: Host(`pve.hyvel.eu`)
       middlewares:
         - name: security-headers
