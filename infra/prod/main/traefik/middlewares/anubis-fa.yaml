@@ -1,0 +1,10 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: anubis
+  namespace: traefik
+spec:
+  forwardAuth:
+    address: http://app.anubis.svc.cluster.local/.within.website/x/cmd/anubis/api/check
+    trustForwardHeader: true
+    maxResponseBodySize: 1048576

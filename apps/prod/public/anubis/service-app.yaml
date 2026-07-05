@@ -11,7 +11,6 @@ spec:
     app.kubernetes.io/name: anubis
     app.kubernetes.io/component: app
   ports:
-    - port: 7580
+    - port: 80
       protocol: TCP
-      targetPort: 7580
   type: ClusterIP

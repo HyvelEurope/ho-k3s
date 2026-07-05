@@ -55,6 +55,8 @@ spec:
   routes:
     - match: Host(`echo.hyvel.eu`)
       middlewares:
+        - name: anubis
+          namespace: traefik
         - name: security-headers
           namespace: echo
         - name: compress

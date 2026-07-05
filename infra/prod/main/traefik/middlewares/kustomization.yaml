@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
   - authelia-fa.yaml
+  - anubis-fa.yaml
   - compress.yaml
   - traefik-https-redirect.yaml
