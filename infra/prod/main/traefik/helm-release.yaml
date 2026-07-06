@@ -28,10 +28,17 @@ spec:
       enabled: true
 
     ports:
+      traefik:
+        observability:
+          accessLogs: false
+
       websecure:
         http3:
           enabled: true
           advertisedPort: 443
+
+        observability:
+          accessLogs: false
 
         forwardedHeaders:
           trustedIPs:
@@ -41,6 +48,9 @@ spec:
           insecure: false
 
       web:
+        observability:
+          accessLogs: false
+
         forwardedHeaders:
           trustedIPs:
             - 10.0.0.0/8
