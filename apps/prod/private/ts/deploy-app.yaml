@@ -27,7 +27,7 @@ spec:
             claimName: ts-pvc
       containers:
         - name: ts
-          image: ghcr.io/yourok/torrserver:MatriX.141.4
+          image: ghcr.io/yourok/torrserver:MatriX.142
           env:
             - name: TS_PORT
               value: "7540"
