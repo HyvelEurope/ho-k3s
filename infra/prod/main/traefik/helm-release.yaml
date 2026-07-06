@@ -23,7 +23,7 @@ spec:
       general:
         level: INFO
       access:
-        enabled: false
+        enabled: true
 
     providers:
       kubernetesCRD:
