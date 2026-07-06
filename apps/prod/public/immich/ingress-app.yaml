@@ -60,6 +60,8 @@ spec:
         - name: compress
           namespace: traefik
       kind: Rule
+      observability:
+        accessLogs: true
       services:
         - kind: Service
           name: app
