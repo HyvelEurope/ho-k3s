@@ -24,6 +24,9 @@ spec:
         allowCrossNamespace: true
         allowExternalNameServices: true
 
+    accessLog:
+      enabled: true
+
     ports:
       websecure:
         http3:
