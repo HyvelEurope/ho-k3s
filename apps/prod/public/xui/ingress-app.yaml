@@ -93,7 +93,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.edel.ee`)
+    - match: HostSNI(`www.visittallinn.ee`)
       services:
         - name: app
           port: 7554
