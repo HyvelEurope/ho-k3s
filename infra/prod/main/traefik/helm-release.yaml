@@ -37,9 +37,6 @@ spec:
             - 192.168.0.0/16
           insecure: false
 
-        observability:
-          accessLogs: true
-
       web:
         forwardedHeaders:
           trustedIPs:
@@ -47,9 +44,6 @@ spec:
             - 172.16.0.0/12
             - 192.168.0.0/16
           insecure: false
-
-        observability:
-          accessLogs: true
 
     service:
       spec:
