@@ -19,12 +19,6 @@ spec:
     metrics:
       prometheus: null
 
-    logs:
-      general:
-        level: INFO
-      access:
-        enabled: true
-
     providers:
       kubernetesCRD:
         allowCrossNamespace: true
@@ -41,7 +35,10 @@ spec:
             - 10.0.0.0/8
             - 172.16.0.0/12
             - 192.168.0.0/16
-          insecure: true
+          insecure: false
+
+        observability:
+          accessLogs: true
 
       web:
         forwardedHeaders:
@@ -49,7 +46,10 @@ spec:
             - 10.0.0.0/8
             - 172.16.0.0/12
             - 192.168.0.0/16
-          insecure: true
+          insecure: false
+
+        observability:
+          accessLogs: true
 
     service:
       spec:
