@@ -27,6 +27,8 @@ spec:
         - name: traefik-https-redirect
           namespace: traefik
       kind: Rule
+      observability:
+        accessLogs: true
       services:
         - name: noop@internal
           kind: TraefikService
@@ -55,6 +57,8 @@ spec:
         - name: compress
           namespace: traefik
       kind: Rule
+      observability:
+        accessLogs: true
       services:
         - kind: Service
           name: app
