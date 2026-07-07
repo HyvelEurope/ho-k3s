@@ -8,3 +8,4 @@ resources:
   - deploy-cache.yaml
   - service-cache.yaml
   - service-app.yaml
+  - ingress-app.yaml

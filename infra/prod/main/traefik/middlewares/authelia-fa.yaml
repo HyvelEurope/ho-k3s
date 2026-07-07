@@ -5,7 +5,7 @@ metadata:
   namespace: traefik
 spec:
   forwardAuth:
-    address: http://app.authelia.svc.cluster.local/api/authz/forward-auth
+    address: https://auth.hyvel.eu/api/authz/forward-auth
     trustForwardHeader: true
     maxResponseBodySize: 1048576
     authResponseHeaders:
