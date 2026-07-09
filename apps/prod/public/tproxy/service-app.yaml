@@ -11,7 +11,7 @@ spec:
     app.kubernetes.io/name: tproxy
     app.kubernetes.io/component: app
   ports:
-    - name: app-1
+    - name: app
       protocol: TCP
       port: 7770
   type: ClusterIP
