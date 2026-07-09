@@ -43,9 +43,14 @@ spec:
     app.kubernetes.io/name: xui
     app.kubernetes.io/component: app
   ports:
-    - name: udp
+    - name: hys-1
       protocol: UDP
-      port: 8443
-      targetPort: 7557
+      port: 7557
+    - name: apl
+      protocol: TCP
+      port: 7558
+    - name: hys-2
+      protocol: UDP
+      port: 7559
   loadBalancerIP: 192.168.200.15
   type: LoadBalancer

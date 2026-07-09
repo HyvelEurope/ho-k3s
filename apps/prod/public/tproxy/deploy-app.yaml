@@ -22,14 +22,34 @@ spec:
         app.kubernetes.io/component: app
     spec:
       volumes:
-        - name: app
+        - name: app-1
           secret:
-            secretName: app
+            secretName: app-1
+        - name: app-2
+          secret:
+            secretName: app-2
+        - name: app-3
+          secret:
+            secretName: app-3
       containers:
-        - name: tproxy
+        - name: tproxy-1
           image: raylabpro/telemt:3.4.15-alpine3.24
           volumeMounts:
-            - name: app
+            - name: app-1
+              mountPath: "/etc/telemt/config.toml"
+              subPath: config.toml
+              readOnly: true
+        - name: tproxy-2
+          image: raylabpro/telemt:3.4.15-alpine3.24
+          volumeMounts:
+            - name: app-2
+              mountPath: "/etc/telemt/config.toml"
+              subPath: config.toml
+              readOnly: true
+        - name: tproxy-3
+          image: raylabpro/telemt:3.4.15-alpine3.24
+          volumeMounts:
+            - name: app-3
               mountPath: "/etc/telemt/config.toml"
               subPath: config.toml
               readOnly: true
