@@ -4,8 +4,7 @@ metadata:
     name: hyvel-dns01-token
     namespace: cert-manager
 stringData:
-    api-key: ENC[AES256_GCM,data:Fd43sCqZxnxYvuz6CN2l/P2CxQobIpHDay+Qu+Hz+DO4jlTxEAl5dozQtu0I+iugZASvj0T7OhqyOlEOx8dT98gxgs8=,iv:ZBq5qYTKS2XWCyT6Lt6fQ/hVRqywK1Weu1FDdTqwEG8=,tag:bp/ISax9qOJiM1mNnaJsqw==,type:str]
-    secret-key: ENC[AES256_GCM,data:240urM8FxnzNgGlLcglhKG3bSxmSb7i5JK4Iwt9nZD5+GhM1QQREz+N4W2v8Qdop9PWnGeD+vVD3lQGFoHRyMeh2phU=,iv:9OvocDb2LMZGCg6QfxSZIC1IivknJCT3jA/dJFfm1Hc=,tag:QTQXdwBYCRxQvU/ZD4BVUA==,type:str]
+    api-token: ENC[AES256_GCM,data:4RQhajtfsZhxQ54Xlcay3opXcbadpuIC++8L+lYArVuAXVyFDXBRfO/TbdEe40ZNYEeOZqA=,iv:TpRAk8U7Hz951UHzGJ2WKVcONZVbvMhJqnlK3cl6/tE=,tag:HLDBdDa+pfeJCOoeVO3chQ==,type:str]
 sops:
     age:
         - enc: |
@@ -18,6 +17,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-05-26T04:33:31Z"
-    mac: ENC[AES256_GCM,data:+uvq4glch3C24I5dECvtUYNxp9nEuERLG6rzzHd4Fd0URG+u6YHz0sUQDTXlMCPhNRTiZkH8iATQ0uLK6l+Mu+xS3HjloPEV4mD3+A9BvFhr9fus0LAwQcj8DZWgw5znVel0nJUtTaivXIinP8T+/vPKoC40gJ+Ejje/to2PRQ4=,iv:nPdxBe9Bg/5CkzztdjHGbcEulN+z6R+M/5bxe2B/0Gw=,tag:tZa2XmwJGc0ZOyd76nsAwg==,type:str]
+    lastmodified: "2026-07-10T09:47:10Z"
+    mac: ENC[AES256_GCM,data:RwwpY9OgzkXJFyuZv5p2wo5UvBB7PBX19LihZTH/mVFfED0wrqkvLj+zRRZ699dSJ0OjSKOclBDpslr7X/aj2Dgp5x3SA7AHD9NqSROAInSgBq/9can3zzDyb0kWcouf1SHMOQOEtURLwWT7uw8P0N901hLf4S230w9/uGy/4KQ=,iv:VUUmQk3Zh0plcjQcpjxqmx2H1qjE2tCz1vvzpSKrws8=,tag:kgLfqTZGJJm7jwuGb5r8iw==,type:str]
     version: 3.13.1
