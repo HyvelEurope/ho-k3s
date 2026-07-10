@@ -9,4 +9,3 @@ resources:
   - hyvel-dns01-token.yaml
   - wildcard-ho-hyvel-certificate.yaml
   - wildcard-hyvel-certificate.yaml
-  - hyvel-dns01-rbac.yaml
