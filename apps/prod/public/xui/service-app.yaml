@@ -26,6 +26,9 @@ spec:
     - name: vless-3
       protocol: TCP
       port: 7556
+    - name: vless-cf
+      protocol: TCP
+      port: 7670
   type: ClusterIP
 
 ---

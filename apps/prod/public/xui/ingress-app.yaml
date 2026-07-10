@@ -27,7 +27,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`xui.hyvel.eu`) || Host(`xsu.hyvel.eu`) || Host(`xp.hyvel.eu`)
+    - match: Host(`xui.hyvel.eu`) || Host(`xsu.hyvel.eu`) || Host(`xp.hyvel.eu`) || Host(`xcf.hyvel.eu`)
       middlewares:
         - name: traefik-https-redirect
           namespace: traefik
@@ -105,6 +105,10 @@ spec:
       services:
         - name: app
           port: 7556
+    - match: HostSNI(`xcf.hyvel.eu`)
+      services:
+        - name: app
+          port: 7670
 
 ---
 
