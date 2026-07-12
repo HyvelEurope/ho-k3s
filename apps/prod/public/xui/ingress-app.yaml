@@ -93,7 +93,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.dzingel.ee`)
+    - match: HostSNI(`www.dzingel.ee`) || HostSNI(`dzingel.ee`)
       services:
         - name: app
           port: 7554
