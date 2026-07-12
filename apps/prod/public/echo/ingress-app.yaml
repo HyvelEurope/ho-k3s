@@ -67,3 +67,16 @@ spec:
         - kind: Service
           name: app
           port: 8080
+    - match: Host(`echocf.hyvel.eu`)
+      middlewares:
+        - name: cloudflare
+          namespace: traefik
+        - name: security-headers
+          namespace: echo
+        - name: compress
+          namespace: traefik
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 8080
