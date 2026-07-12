@@ -54,7 +54,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`echo.hyvel.eu`) || Host(`echocf.hyvel.eu`)
+    - match: Host(`echo.hyvel.eu`)
       middlewares:
         - name: anubis
           namespace: traefik
