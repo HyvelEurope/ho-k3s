@@ -22,7 +22,7 @@ spec:
     experimental:
       plugins:
         cloudflarewarp:
-          modulename: github.com/PseudoResonance/cloudflarewarp
+          moduleName: github.com/PseudoResonance/cloudflarewarp
           version: v1.4.2
 
     providers:
