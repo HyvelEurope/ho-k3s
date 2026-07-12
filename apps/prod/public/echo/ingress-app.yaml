@@ -27,7 +27,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`echo.hyvel.eu`)
+    - match: Host(`echo.hyvel.eu`) || Host(`echocf.hyvel.eu`)
       middlewares:
         - name: traefik-https-redirect
           namespace: traefik
@@ -50,10 +50,11 @@ spec:
       - main: hyvel.eu
         sans:
           - "echo.hyvel.eu"
+          - "echocf.hyvel.eu"
   entryPoints:
     - websecure
   routes:
-    - match: Host(`echo.hyvel.eu`)
+    - match: Host(`echo.hyvel.eu`) || Host(`echocf.hyvel.eu`)
       middlewares:
         - name: anubis
           namespace: traefik
