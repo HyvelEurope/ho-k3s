@@ -27,7 +27,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`xui.hyvel.eu`) || Host(`xsu.hyvel.eu`) || Host(`xp.hyvel.eu`) || Host(`xcf.hyvel.eu`)
+    - match: Host(`xui.hyvel.eu`) || Host(`cache.hyvel.eu`) || Host(`hub.hyvel.eu`) || Host(`sync.hyvel.eu`)
       middlewares:
         - name: traefik-https-redirect
           namespace: traefik
@@ -93,19 +93,19 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.dzingel.ee`) || HostSNI(`dzingel.ee`)
+    - match: HostSNI(`repo.br.ee`)
       services:
         - name: app
           port: 7554
-    - match: HostSNI(`xp.hyvel.eu`)
+    - match: HostSNI(`cache.hyvel.eu`)
       services:
         - name: app
           port: 7555
-    - match: HostSNI(`xsu.hyvel.eu`)
+    - match: HostSNI(`hub.hyvel.eu`)
       services:
         - name: app
           port: 7556
-    - match: HostSNI(`xcf.hyvel.eu`)
+    - match: HostSNI(`sync.hyvel.eu`)
       services:
         - name: app
           port: 7670

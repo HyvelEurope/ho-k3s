@@ -11,24 +11,12 @@ spec:
     app.kubernetes.io/name: xui
     app.kubernetes.io/component: app
   ports:
-    - name: web
-      protocol: TCP
-      port: 7700
-    - name: web-sub
-      protocol: TCP
-      port: 7560
-    - name: vless-1
-      protocol: TCP
-      port: 7554
-    - name: vless-2
-      protocol: TCP
-      port: 7555
-    - name: vless-3
-      protocol: TCP
-      port: 7556
-    - name: vless-cf
-      protocol: TCP
-      port: 7670
+    - port: 7700
+    - port: 7560
+    - port: 7554
+    - port: 7555
+    - port: 7556
+    - port: 7670
   type: ClusterIP
 
 ---
@@ -36,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-udp
+  name: app-hysteria-hopping
   namespace: xui
   labels:
     app.kubernetes.io/name: xui
@@ -46,14 +34,27 @@ spec:
     app.kubernetes.io/name: xui
     app.kubernetes.io/component: app
   ports:
-    - name: hys-1
+    - port: 9443
       protocol: UDP
-      port: 7557
-    - name: apl
-      protocol: TCP
-      port: 7558
-    - name: hys-2
+    - port: 9444
       protocol: UDP
-      port: 7559
-  loadBalancerIP: 192.168.200.15
+    - port: 9445
+      protocol: UDP
+    - port: 9446
+      protocol: UDP
+    - port: 9447
+      protocol: UDP
+    - port: 9448
+      protocol: UDP
+    - port: 9449
+      protocol: UDP
+    - port: 9450
+      protocol: UDP
+    - port: 9451
+      protocol: UDP
+    - port: 9452
+      protocol: UDP
+    - port: 9453
+      protocol: UDP
+  loadBalancerIP: 192.168.200.16
   type: LoadBalancer
