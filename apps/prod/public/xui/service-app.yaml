@@ -11,18 +11,18 @@ spec:
     app.kubernetes.io/name: xui
     app.kubernetes.io/component: app
   ports:
-    - port: 7700
-      protocol: TCP
-    - port: 7560
-      protocol: TCP
-    - port: 7554
-      protocol: TCP
-    - port: 7555
-      protocol: TCP
-    - port: 7556
-      protocol: TCP
-    - port: 7670
-      protocol: TCP
+    - name: web
+      port: 7700
+    - name: web-config
+      port: 7560
+    - name: proxy-1
+      port: 7554
+    - name: proxy-2
+      port: 7555
+    - name: proxy-3
+      port: 7556
+    - name: proxy-4
+      port: 7670
   type: ClusterIP
 
 ---
@@ -40,27 +40,38 @@ spec:
     app.kubernetes.io/name: xui
     app.kubernetes.io/component: app
   ports:
-    - port: 9443
+    - name: proxy-1
+      port: 9443
       protocol: UDP
-    - port: 9444
+    - name: proxy-2
+      port: 9444
       protocol: UDP
-    - port: 9445
+    - name: proxy-3
+      port: 9445
       protocol: UDP
-    - port: 9446
+    - name: proxy-4
+      port: 9446
       protocol: UDP
-    - port: 9447
+    - name: proxy-5
+      port: 9447
       protocol: UDP
-    - port: 9448
+    - name: proxy-6
+      port: 9448
       protocol: UDP
-    - port: 9449
+    - name: proxy-7
+      port: 9449
       protocol: UDP
-    - port: 9450
+    - name: proxy-8
+      port: 9450
       protocol: UDP
-    - port: 9451
+    - name: proxy-9
+      port: 9451
       protocol: UDP
-    - port: 9452
+    - name: proxy-10
+      port: 9452
       protocol: UDP
-    - port: 9453
+    - name: proxy-11
+      port: 9453
       protocol: UDP
   loadBalancerIP: 192.168.200.16
   type: LoadBalancer
