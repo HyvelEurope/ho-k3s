@@ -16,4 +16,4 @@ spec:
     - "*.hyvel.eu"
   secretTemplate:
     annotations:
-      replicator.v1.mittwald.de/replicate-to: "dummy200,echo,pve,xui,vw,immich,anubis,authelia,hyvel,singbox"
+      replicator.v1.mittwald.de/replicate-to: "dummy200,echo,pve,xui,vw,immich,anubis,authelia,hyvel,xray"
