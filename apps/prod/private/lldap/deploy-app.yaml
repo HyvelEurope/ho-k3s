@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: lldap
-          image: lldap/lldap:2026-05-26-alpine
+          image: lldap/lldap:2026-07-19-alpine
           envFrom:
             - secretRef:
                 name: app
