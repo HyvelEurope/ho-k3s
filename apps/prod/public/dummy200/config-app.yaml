@@ -29,7 +29,6 @@ data:
 
       server {
         listen 80 default_server;
-        http2 on;
         server_name _;
 
         location / {
