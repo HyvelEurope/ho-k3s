@@ -33,9 +33,9 @@ spec:
             defaultMode: 0400
         - name: git-content
           emptyDir: {}
-        - name: app
-          configMap:
-            name: app
+        - name: nginx
+          secret:
+            secretName: nginx
       containers:
         - name: git-sync
           image: registry.k8s.io/git-sync/git-sync:v4.7.1
@@ -63,7 +63,7 @@ spec:
         - name: nginx
           image: ghcr.io/johnnyjoy/nginx-micro:1.31.3-upx
           volumeMounts:
-            - name: app
+            - name: nginx
               mountPath: "/conf/nginx.conf"
               subPath: nginx.conf
               readOnly: true
