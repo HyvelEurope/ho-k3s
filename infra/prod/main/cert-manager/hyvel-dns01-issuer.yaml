@@ -10,10 +10,13 @@ spec:
             name: hyvel-dns01-issuer-account-key
         solvers:
             - dns01:
-                cloudflare:
-                    apiTokenSecretRef:
-                        name: hyvel-dns01-token
-                        key: api-token
+                webhook:
+                    config:
+                        apiKeySecretRef:
+                            name: hyvel-dns01-token
+                            key: token
+                    solverName: desec
+                    groupName: acme.pr0ton11.github.com
 sops:
     age:
         - enc: |
@@ -26,6 +29,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-07-10T09:49:36Z"
-    mac: ENC[AES256_GCM,data:kAvr1NYxsR2lesjN1neRrW1GUbz2rpGaCOAUyDJkwhEw/RYXBOMQU0uZcPALUdFvz/w2JJ6XUHomn+t0cvGtRcdJ8TiObgmdlFcBP2C43MDa0FglOkq3vLI05wnXBxwIz3Jknvn0OrZSgtm41q2eNDeOibC3JGGtQV5eJajyMM8=,iv:avCOkMO3Izwq0YTZWnFGoPuKwYnc9bOzRRenLywyYiw=,tag:5i2MxlLyHSAXDpVKE/KloA==,type:str]
+    lastmodified: "2026-07-29T06:09:09Z"
+    mac: ENC[AES256_GCM,data:axP1b+Dwb8pnEgavOgXoe9jBn9ivFzAoYo+CU3I2f+wIQ6PAsbFHxtfwMv0c7g7kJb8oURy7CyiFr1Nv6GPYzKT69tt9EGo66IZppDIss/iMkMosrc2FcOhgWESsebw3aJxoPl9izU1FCOxEr7itDVaQoOnI22+8oks+U3SfJnc=,iv:3Elsp/TKGRltpR+rY0M37NfnYKcyl/kWDLii2fzm01E=,tag:RStWdd2H/70cyA0j3CstGw==,type:str]
     version: 3.13.1

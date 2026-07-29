@@ -6,3 +6,16 @@ metadata:
 spec:
   url: https://charts.jetstack.io
   interval: 1h
+
+---
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: cert-manager-desec-webhook
+  namespace: flux-system
+spec:
+  url: oci://ghcr.io/pr0ton11/helm/cert-manager-desec-webhook
+  interval: 1h
+  ref:
+    tag: "0.1.2"

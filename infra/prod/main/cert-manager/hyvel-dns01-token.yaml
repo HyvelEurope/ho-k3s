@@ -4,7 +4,7 @@ metadata:
     name: hyvel-dns01-token
     namespace: cert-manager
 stringData:
-    api-token: ENC[AES256_GCM,data:4RQhajtfsZhxQ54Xlcay3opXcbadpuIC++8L+lYArVuAXVyFDXBRfO/TbdEe40ZNYEeOZqA=,iv:TpRAk8U7Hz951UHzGJ2WKVcONZVbvMhJqnlK3cl6/tE=,tag:HLDBdDa+pfeJCOoeVO3chQ==,type:str]
+    token: ENC[AES256_GCM,data:Zezza+tqnxtohi49lO6QZ3PucFNhKynG/OjV6g==,iv:hvR4jdyETMJw3z83DFvDkWubyEZFbMyEwPi1xfsSlDU=,tag:jezJWpaIuJv7hYUd916Exg==,type:str]
 sops:
     age:
         - enc: |
@@ -17,6 +17,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-07-10T09:47:10Z"
-    mac: ENC[AES256_GCM,data:RwwpY9OgzkXJFyuZv5p2wo5UvBB7PBX19LihZTH/mVFfED0wrqkvLj+zRRZ699dSJ0OjSKOclBDpslr7X/aj2Dgp5x3SA7AHD9NqSROAInSgBq/9can3zzDyb0kWcouf1SHMOQOEtURLwWT7uw8P0N901hLf4S230w9/uGy/4KQ=,iv:VUUmQk3Zh0plcjQcpjxqmx2H1qjE2tCz1vvzpSKrws8=,tag:kgLfqTZGJJm7jwuGb5r8iw==,type:str]
+    lastmodified: "2026-07-29T06:02:57Z"
+    mac: ENC[AES256_GCM,data:56cbuEiwArYDEliOOv1IlcuZxz6NFnCjaHqBq/ue4bn8NRL4fgGvELhFPHkzd1QULRFeFNoaDMMHMeUtl6/BPRaYy97aECbyQOxtTWaPkPv+w3sIW3P6HCuRbpvtyofwbQoaeIBSlm2F+IGbJrdgq4VTcAM0y6iWUx7Mdmd3BfE=,iv:YoULXtMrhUoHMoMyhrktRFEaDYM2Yo+XxWa8Kloubgw=,tag:+Zs5Zy9BDMIVHvb5G8wfFA==,type:str]
     version: 3.13.1

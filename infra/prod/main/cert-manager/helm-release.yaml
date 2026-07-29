@@ -26,3 +26,18 @@ spec:
     cainjector:
       podDisruptionBudget:
         enabled: true
+
+---
+
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: cert-manager-desec-webhook
+    namespace: cert-manager
+spec:
+    interval: 10m
+    releaseName: cert-manager-desec-webhook
+    chartRef:
+        kind: OCIRepository
+        name: cert-manager-desec-webhook
+        namespace: flux-system
