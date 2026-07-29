@@ -27,7 +27,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`echo.hyvel.eu`) || Host(`echocf.hyvel.eu`)
+    - match: Host(`echo.hyvel.eu`)
       middlewares:
         - name: traefik-https-redirect
           namespace: traefik
@@ -47,10 +47,7 @@ spec:
   tls:
     secretName: wildcard-hyvel-certificate-secret
     domains:
-      - main: hyvel.eu
-        sans:
-          - "echo.hyvel.eu"
-          - "echocf.hyvel.eu"
+      - main: echo.hyvel.eu
   entryPoints:
     - websecure
   routes:
@@ -67,16 +64,4 @@ spec:
         - kind: Service
           name: app
           port: 8080
-    - match: Host(`echocf.hyvel.eu`)
-      middlewares:
-        - name: cloudflare
-          namespace: traefik
-        - name: security-headers
-          namespace: echo
-        - name: compress
-          namespace: traefik
-      kind: Rule
-      services:
-        - kind: Service
-          name: app
-          port: 8080
+          scheme: h2c

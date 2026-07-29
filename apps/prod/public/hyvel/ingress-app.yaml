@@ -33,9 +33,8 @@ spec:
           namespace: traefik
       kind: Rule
       services:
-        - kind: Service
-          name: app
-          port: 7581
+        - name: noop@internal
+          kind: TraefikService
 
 ---
 
@@ -65,3 +64,4 @@ spec:
         - kind: Service
           name: app
           port: 7581
+          scheme: h2c

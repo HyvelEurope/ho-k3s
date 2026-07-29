@@ -34,6 +34,7 @@ spec:
         - kind: Service
           name: app
           port: 7585
+          scheme: h2c
 
 ---
 
@@ -60,3 +61,4 @@ spec:
         - kind: Service
           name: app
           port: 7585
+          scheme: h2c
