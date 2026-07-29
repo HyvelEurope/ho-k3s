@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - config-app.yaml
+  - secret-nginx.yaml
   - secret-app.yaml
   - deploy-app.yaml
   - service-app.yaml
