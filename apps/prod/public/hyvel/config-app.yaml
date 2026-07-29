@@ -40,7 +40,13 @@ data:
 
         root /data/current/public;
         index index.html index.htm;
-  
+        
+        location /xsubs/ {
+          default_type text/plain;
+          root /conf/xsubs;
+          try_files $uri.txt =404;
+        }
+        
         location / {
           try_files $uri $uri/ =404;
         }

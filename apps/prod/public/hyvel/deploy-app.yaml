@@ -24,6 +24,9 @@ spec:
       securityContext:
         fsGroup: 65533
       volumes:
+        - name: xsubs
+          secret:
+            secretName: xsubs
         - name: git-secret
           secret:
             secretName: app
@@ -66,5 +69,8 @@ spec:
               readOnly: true
             - name: git-content
               mountPath: /data
+              readOnly: true
+            - name: xsubs
+              mountPath: "/conf/xsubs/"
               readOnly: true
 
