@@ -185,7 +185,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: ingress-core
+  name: ingress-account
   namespace: xray
 spec:
   tls:
