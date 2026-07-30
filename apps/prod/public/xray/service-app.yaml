@@ -38,6 +38,4 @@ spec:
       port: 8000
     - name: proxy-2
       port: 8001
-    - name: proxy-3
-      port: 8002
   type: ClusterIP

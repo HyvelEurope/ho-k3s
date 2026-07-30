@@ -173,8 +173,6 @@ spec:
         - kind: Service
           name: app
           port: 8000
-          scheme: https
-          serversTransport: ingress-transport-skip-verify
 
 ---
 
@@ -234,6 +232,4 @@ spec:
       services:
         - kind: Service
           name: app
-          port: 8002
-          scheme: https
-          serversTransport: ingress-transport-skip-verify
+          port: 8000
