@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: xray
+  labels:
+    app.kubernetes.io/name: xray
+    app.kubernetes.io/component: app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: xray
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      name: xray
+      labels:
+        app.kubernetes.io/name: xray
+        app.kubernetes.io/component: app
+    spec:
+      volumes:
+        - name: app
+          secret:
+            secretName: app
+        - name: xray-certificate
+          secret:
+            secretName: wildcard-hyvel-certificate-secret
+      containers:
+        - name: xray
+          image: teddysun/xray:26.7.28
+          volumeMounts:
+            - name: app
+              mountPath: "/etc/xray/config.json"
+              subPath: config.json
+              readOnly: true
+            - name: xray-certificate
+              mountPath: "/etc/certs/"
+              readOnly: true

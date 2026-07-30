@@ -1,0 +1,210 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  namespace: xray
+spec:
+  headers:
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    customResponseHeaders:
+      server: ""
+    frameDeny: true
+    customFrameOptionsValue: "SAMEORIGIN"
+    contentTypeNosniff: true
+    referrerPolicy: "strict-origin-when-cross-origin"
+    permissionsPolicy: "camera=(), microphone=(), geolocation=()"
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: hide-h3-header
+  namespace: xray
+spec:
+  headers:
+    customResponseHeaders:
+      alt-svc: ""
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: ingress-transport-skip-verify
+  namespace: xray
+spec:
+  insecureSkipVerify: true
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: TLSOption
+metadata:
+  name: tls12
+  namespace: xray
+spec:
+  minVersion: VersionTLS12
+  maxVersion: VersionTLS12
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: hyvel-redirect
+  namespace: xray
+spec:
+  redirectRegex:
+    regex: "^.*$"
+    replacement: "https://hyvel.eu"
+
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-plain
+  namespace: xray
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`origin.hyvel.eu`) || Host(`core.hyvel.eu`)
+      middlewares:
+        - name: hyvel-redirect
+          namespace: xray
+      observability:
+        accessLogs: true
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hyvel-redirect
+  namespace: xray
+spec:
+  tls:
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: hyvel.eu
+        sans:
+          - "origin.hyvel.eu"
+          - "core.hyvel.eu"
+          - "account.hyvel.eu"
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`origin.hyvel.eu`) || Host(`core.hyvel.eu`) || Host(`account.hyvel.eu`)
+      middlewares:
+        - name: hyvel-redirect
+          namespace: xray
+      observability:
+        accessLogs: true
+      kind: Rule
+      services:
+        - name: noop@internal
+          kind: TraefikService
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-origin
+  namespace: xray
+spec:
+  tls:
+    options:
+      name: tls12
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: origin.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`origin.hyvel.eu`) && PathPrefix(`/api/v1/users/`)
+      middlewares:
+        - name: security-headers
+          namespace: xray
+        - name: hide-h3-header
+          namespace: xray
+      observability:
+        accessLogs: true
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 8000
+          scheme: https
+          serversTransport: ingress-transport-skip-verify
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-core
+  namespace: xray
+spec:
+  tls:
+    options:
+      name: tls12
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: core.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`core.hyvel.eu`) && PathPrefix(`/v2/status/`)
+      middlewares:
+        - name: security-headers
+          namespace: xray
+        - name: hide-h3-header
+          namespace: xray
+      observability:
+        accessLogs: true
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 8001
+          scheme: https
+          serversTransport: ingress-transport-skip-verify
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingress-core
+  namespace: xray
+spec:
+  tls:
+    secretName: wildcard-hyvel-certificate-secret
+    domains:
+      - main: account.hyvel.eu
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`account.hyvel.eu`) && PathPrefix(`/auth/user/`)
+      middlewares:
+        - name: security-headers
+          namespace: xray
+      observability:
+        accessLogs: true
+      kind: Rule
+      services:
+        - kind: Service
+          name: app
+          port: 8002
+          scheme: https
+          serversTransport: ingress-transport-skip-verify
