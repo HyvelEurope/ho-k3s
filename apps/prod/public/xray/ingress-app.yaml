@@ -48,6 +48,8 @@ metadata:
 spec:
   minVersion: VersionTLS12
   maxVersion: VersionTLS12
+  alpnProtocols:
+    - h2
 
 ---
 
@@ -202,38 +204,5 @@ spec:
         - kind: Service
           name: app
           port: 8000
-          scheme: https
-          serversTransport: ingress-transport-skip-verify
-
----
-
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: ingress-core
-  namespace: xray
-spec:
-  tls:
-    options:
-      name: http2tls12
-    secretName: wildcard-hyvel-certificate-secret
-    domains:
-      - main: core.hyvel.eu
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`core.hyvel.eu`) && PathPrefix(`/v2/status`)
-      middlewares:
-        - name: security-headers
-          namespace: xray
-        - name: hide-h3-header
-          namespace: xray
-      observability:
-        accessLogs: true
-      kind: Rule
-      services:
-        - kind: Service
-          name: app
-          port: 8001
           scheme: https
           serversTransport: ingress-transport-skip-verify
