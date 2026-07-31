@@ -12,7 +12,6 @@ spec:
     app.kubernetes.io/component: app
   ports:
     - name: app
-      protocol: TCP
       port: 7770
   type: ClusterIP
 
