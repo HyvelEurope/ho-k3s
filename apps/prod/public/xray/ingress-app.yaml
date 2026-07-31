@@ -48,8 +48,6 @@ metadata:
 spec:
   minVersion: VersionTLS12
   maxVersion: VersionTLS12
-  alpnProtocols:
-    - h2
 
 ---
 
