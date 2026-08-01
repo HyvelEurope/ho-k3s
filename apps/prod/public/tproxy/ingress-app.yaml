@@ -20,7 +20,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`www.baltispoon.ee`)
+    - match: HostSNI(`portal.hyvel.eu`)
       services:
         - name: app
           port: 7770

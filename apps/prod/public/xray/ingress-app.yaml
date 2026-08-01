@@ -75,12 +75,10 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`origin.hyvel.eu`) || Host(`core.hyvel.eu`)
+    - match: Host(`origin.hyvel.eu`) || Host(`core.hyvel.eu`) || Host(`account.hyvel.eu`)
       middlewares:
         - name: hyvel-redirect
           namespace: xray
-      observability:
-        accessLogs: true
       kind: Rule
       services:
         - name: noop@internal
@@ -110,8 +108,6 @@ spec:
       middlewares:
         - name: hyvel-redirect
           namespace: xray
-      observability:
-        accessLogs: true
       kind: Rule
       services:
         - name: noop@internal
@@ -138,8 +134,6 @@ spec:
       middlewares:
         - name: hyvel-redirect
           namespace: xray
-      observability:
-        accessLogs: true
       kind: Rule
       services:
         - name: noop@internal
@@ -168,8 +162,6 @@ spec:
           namespace: xray
         - name: hide-h3-header
           namespace: xray
-      observability:
-        accessLogs: true
       kind: Rule
       services:
         - kind: Service
@@ -197,8 +189,6 @@ spec:
       middlewares:
         - name: security-headers
           namespace: xray
-      observability:
-        accessLogs: true
       kind: Rule
       services:
         - kind: Service
