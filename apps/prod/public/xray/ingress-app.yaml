@@ -61,7 +61,7 @@ metadata:
 spec:
   redirectRegex:
     regex: "^.*$"
-    replacement: "https://hyvel.eu"
+    replacement: "https://auth.hyvel.eu"
 
 
 ---
