@@ -10,7 +10,7 @@ This repository contains the declarative configuration of HyvelOne k3s cluster.
 
 - [Cilium](https://github.com/cilium/cilium) - Replaces flannel in default k3s configuration.
   Allows to get real client IPs for deployed applications.
-  Connected with OpenWRT router via BGP to get reliable LB IP pool.
+  Connected with OpenWRT router via BGP for a reliable way to get IP pool for LoadBalancer services.
 - [cert-manager](https://github.com/cert-manager/cert-manager) -
   Provides certificates for internal and external services.
 - [Traefik](https://github.com/traefik/traefik) - Ingress (reverse-proxy/LB)
@@ -24,9 +24,9 @@ This repository contains the declarative configuration of HyvelOne k3s cluster.
 ### Public services
 
 - [vaultwarden](https://github.com/dani-garcia/vaultwarden) - [Bitwarden](https://github.com/bitwarden/server) server
-  Rust-based implementation
-- [3X-UI](https://github.com/MHSanaei/3x-ui) - [Xray](https://github.com/XTLS/Xray-core) server with web panel
-- [Immich](https://github.com/immich-app/immich) - photo management/gallery app
+- [telemt](https://github.com/telemt/telemt) - MTProxy with TLS-fronting
+- [Xray](https://github.com/XTLS/Xray-core) - VPN/Proxy server
+- [Immich](https://github.com/immich-app/immich) - Photo management/gallery app
 
 # Structure graphs
 
