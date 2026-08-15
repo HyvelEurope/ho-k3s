@@ -27,7 +27,7 @@ spec:
             secretName: app-config
       containers:
         - name: anubis
-          image: ghcr.io/techarohq/anubis:v1.26.2
+          image: ghcr.io/techarohq/anubis:v1.27.0
           envFrom:
             - secretRef:
                 name: app-envs
