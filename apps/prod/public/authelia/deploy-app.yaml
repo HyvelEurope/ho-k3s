@@ -27,7 +27,7 @@ spec:
             secretName: app-config
       containers:
         - name: authelia
-          image: authelia/authelia:4.39.21
+          image: authelia/authelia:4.39.20
           envFrom:
             - secretRef:
                 name: app
