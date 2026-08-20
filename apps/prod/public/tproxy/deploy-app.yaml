@@ -33,21 +33,21 @@ spec:
             secretName: app-3
       containers:
         - name: tproxy-1
-          image: raylabpro/telemt:3.4.15-alpine3.24
+          image: raylabpro/telemt:3.4.15-distroless-mc
           volumeMounts:
             - name: app-1
               mountPath: "/etc/telemt/config.toml"
               subPath: config.toml
               readOnly: true
         - name: tproxy-2
-          image: raylabpro/telemt:3.4.15-alpine3.24
+          image: raylabpro/telemt:3.4.15-distroless-mc
           volumeMounts:
             - name: app-2
               mountPath: "/etc/telemt/config.toml"
               subPath: config.toml
               readOnly: true
         - name: tproxy-3
-          image: raylabpro/telemt:3.4.15-alpine3.24
+          image: raylabpro/telemt:3.4.15-distroless-mc
           volumeMounts:
             - name: app-3
               mountPath: "/etc/telemt/config.toml"
