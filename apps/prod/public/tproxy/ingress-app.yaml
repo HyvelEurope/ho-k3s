@@ -20,7 +20,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: HostSNI(`repo.br.ee`)
+    - match: HostSNI(`mirrors.xtom.ee`)
       services:
         - name: app
           port: 7770
