@@ -1,0 +1,13 @@
+node-name: y-k3s-server
+tls-san:
+  - y-k3s-server
+  - y-k3s-server.ho.internal
+
+flannel-backend: none
+disable-network-policy: true
+disable-kube-proxy: true
+disable:
+  - traefik
+  - servicelb
+
+secret-encryption: true
