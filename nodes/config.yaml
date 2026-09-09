@@ -10,4 +10,4 @@ disable:
   - traefik
   - servicelb
 
-secret-encryption: true
+secrets-encryption: true
