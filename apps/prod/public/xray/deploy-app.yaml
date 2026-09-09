@@ -30,7 +30,7 @@ spec:
             secretName: wildcard-hyvel-certificate-secret
       containers:
         - name: xray
-          image: teddysun/xray:26.7.28
+          image: teddysun/xray:26.9.9
           volumeMounts:
             - name: app
               mountPath: "/etc/xray/config.json"
