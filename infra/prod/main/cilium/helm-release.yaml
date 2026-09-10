@@ -20,8 +20,6 @@ spec:
       operator:
         clusterPoolIPv4PodCIDRList:
           - 10.42.0.0/16
-        clusterPoolIPv6PodCIDRList:
-          - fdbf:edb4:8af0::/112
 
     loadBalancer:
       mode: dsr
@@ -47,8 +45,6 @@ spec:
 
     ipv6:
       enabled: false
-
-    ipv6NativeRoutingCIDR: fdbf:edb4:8af0::/112
 
     enableIPv6Masquerade: false
     enableIPv4Masquerade: true
