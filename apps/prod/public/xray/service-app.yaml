@@ -14,9 +14,6 @@ spec:
     - name: port-1
       port: 9443
       protocol: UDP
-    - name: port-2
-      port: 2197
-      protocol: TCP
   loadBalancerIP: 192.168.200.17
   type: LoadBalancer
 
@@ -35,10 +32,6 @@ spec:
     app.kubernetes.io/name: xray
     app.kubernetes.io/component: app
   ports:
-    - name: subs
-      port: 7900
     - name: proxy-1
       port: 8000
-    - name: proxy-2
-      port: 8001
   type: ClusterIP
