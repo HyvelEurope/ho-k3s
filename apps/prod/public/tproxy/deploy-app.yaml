@@ -22,61 +22,15 @@ spec:
         app.kubernetes.io/component: app
     spec:
       volumes:
-        - name: app-1-runtime
-          emptyDir:
-            medium: Memory
-            sizeLimit: 4Mi
-        - name: app-1
+        - name: app
           secret:
-            secretName: app-1
-        - name: app-2-runtime
-          emptyDir:
-            medium: Memory
-            sizeLimit: 4Mi
-        - name: app-2
-          secret:
-            secretName: app-2
-        - name: app-3-runtime
-          emptyDir:
-            medium: Memory
-            sizeLimit: 4Mi
-        - name: app-3
-          secret:
-            secretName: app-3
+            secretName: app
       containers:
-        - name: tproxy-1
-          image: ghcr.io/telemt/telemt:3.5.7
-          workingDir: /run/telemt
-          args:
-            - /etc/telemt/config.toml
+        - name: core
+          image: ghcr.io/sleep3r/mtproto.zig:1.15.2
           volumeMounts:
-            - name: app-1-runtime
-              mountPath: /run/telemt
-            - name: app-1
-              mountPath: "/etc/telemt/config.toml"
+            - name: app
+              mountPath: "/etc/mtproto-proxy/config.toml"
               subPath: config.toml
               readOnly: true
-        - name: tproxy-2
-          image: ghcr.io/telemt/telemt:3.5.7
-          workingDir: /run/telemt
-          args:
-            - /etc/telemt/config.toml
-          volumeMounts:
-            - name: app-2-runtime
-              mountPath: /run/telemt
-            - name: app-2
-              mountPath: "/etc/telemt/config.toml"
-              subPath: config.toml
-              readOnly: true
-        - name: tproxy-3
-          image: ghcr.io/telemt/telemt:3.5.7
-          workingDir: /run/telemt
-          args:
-            - /etc/telemt/config.toml
-          volumeMounts:
-            - name: app-3-runtime
-              mountPath: /run/telemt
-            - name: app-3
-              mountPath: "/etc/telemt/config.toml"
-              subPath: config.toml
-              readOnly: true
+              
