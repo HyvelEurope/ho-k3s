@@ -14,5 +14,5 @@ spec:
     - name: app-1
       port: 7770
     - name: app-2
-      port: 7771
+      port: 443
   type: ClusterIP
