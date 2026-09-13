@@ -24,7 +24,7 @@ spec:
       services:
         - name: app
           port: 7770
-          #serversTransport: ingress-pp
+          serversTransport: ingress-pp
 
 ---
 
