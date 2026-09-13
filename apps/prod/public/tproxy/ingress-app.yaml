@@ -56,4 +56,4 @@ spec:
       services:
         - kind: Service
           name: app
-          port: 443
+          port: 7771
