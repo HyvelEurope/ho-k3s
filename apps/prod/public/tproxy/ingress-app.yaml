@@ -29,6 +29,48 @@ spec:
 ---
 
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  namespace: tproxy
+spec:
+  headers:
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 63072000
+    customResponseHeaders:
+      server: ""
+    permissionsPolicy: "camera=(), microphone=(), geolocation=()"
+
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: TLSOption
+metadata:
+  name: http2tls12
+  namespace: tproxy
+spec:
+  minVersion: VersionTLS12
+  maxVersion: VersionTLS12
+  alpnProtocols:
+    - h2
+
+---
+
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: hide-h3-header
+  namespace: tproxy
+spec:
+  headers:
+    customResponseHeaders:
+      alt-svc: ""
+
+---
+
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: ingress-plain
@@ -55,6 +97,8 @@ metadata:
   namespace: tproxy
 spec:
   tls:
+    options:
+      name: http2tls12
     secretName: wildcard-hyvel-certificate-secret
     domains:
       - main: cache.hyvel.eu
@@ -62,9 +106,12 @@ spec:
     - websecure
   routes:
     - match: Host(`cache.hyvel.eu`)
+      middlewares:
+        - name: security-headers
+          namespace: tproxy
+        - name: hide-h3-header
+          namespace: tproxy
       kind: Rule
-      observability:
-        accessLogs: true
       services:
         - kind: Service
           name: app
