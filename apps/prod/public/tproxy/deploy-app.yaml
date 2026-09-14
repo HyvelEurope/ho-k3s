@@ -22,15 +22,23 @@ spec:
         app.kubernetes.io/component: app
     spec:
       volumes:
+        - name: runtime
+          emptyDir:
+            medium: Memory
+            sizeLimit: 4Mi
         - name: app
           secret:
             secretName: app
       containers:
-        - name: core
-          image: ghcr.io/sleep3r/mtproto.zig:1.15.2
+        - name: tproxy
+          image: ghcr.io/telemt/telemt:3.5.7
+          workingDir: /run/telemt
+          args:
+            - /etc/telemt/config.toml
           volumeMounts:
+            - name: runtime
+              mountPath: /run/telemt
             - name: app
-              mountPath: "/etc/mtproto-proxy/config.toml"
+              mountPath: "/etc/telemt/config.toml"
               subPath: config.toml
               readOnly: true
-              
