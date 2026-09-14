@@ -29,6 +29,19 @@ spec:
         - name: app
           secret:
             secretName: app
+      initContainers:
+        - name: init-files
+          image: busybox:1.38.0-musl
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /run/telemt/web
+              touch /run/telemt/web/index.html
+              touch /run/telemt/web/404.html
+          volumeMounts:
+            - name: runtime
+              mountPath: /run/telemt
       containers:
         - name: tproxy
           image: ghcr.io/telemt/telemt:3.5.7
