@@ -21,6 +21,13 @@ spec:
         app.kubernetes.io/name: authelia
         app.kubernetes.io/component: cache
     spec:
+      volumes:
+        - name: cache
+          persistentVolumeClaim:
+            claimName: cache
       containers:
         - name: valkey
           image: valkey/valkey:9.1.2-alpine
+          volumeMounts:
+            - name: cache
+              mountPath: "/data"
