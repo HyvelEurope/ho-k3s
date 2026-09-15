@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ipu
+  namespace: tproxy
+spec:
+  schedule: "0 12 * * *"
+  concurrencyPolicy: Forbid
+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+
+          containers:
+            - name: updater
+              image: ghcr.io/hyveleurope/sops-git:1.0.0
