@@ -7,3 +7,5 @@ resources:
   - deploy-app.yaml
   - service-app.yaml
   - ingress-app.yaml
+  - cron-ipu.yaml
+  - secret-ipu.yaml 

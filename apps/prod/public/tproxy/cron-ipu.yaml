@@ -3,16 +3,37 @@ kind: CronJob
 metadata:
   name: ipu
   namespace: tproxy
+  labels:
+    app.kubernetes.io/name: tproxy
+    app.kubernetes.io/component: ipu
 spec:
   schedule: "0 12 * * *"
   concurrencyPolicy: Forbid
-
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: tproxy
+      app.kubernetes.io/component: ipu
   jobTemplate:
     spec:
       template:
+        metadata:
+          name: ipu
+          labels:
+            app.kubernetes.io/name: tproxy
+            app.kubernetes.io/component: ipu
         spec:
+          volumes:
+            - name: ipu
+              secret:
+                secretName: ipu
           restartPolicy: Never
-
           containers:
             - name: updater
               image: ghcr.io/hyveleurope/sops-git:1.0.0
+              args:
+                - /home/app/ipu.sh
+              volumeMounts:
+                - name: ipu
+                  mountPath: "/home/app/ipu.sh"
+                  subPath: ipu.sh
+                  readOnly: true
