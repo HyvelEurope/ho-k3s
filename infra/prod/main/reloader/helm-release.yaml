@@ -13,3 +13,6 @@ spec:
         kind: HelmRepository
         name: stakater
         namespace: flux-system
+  values:
+    reloader:
+      reloadStrategy: annotations
