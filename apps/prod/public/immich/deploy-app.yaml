@@ -36,7 +36,7 @@ spec:
                 name: app
           env:
             - name: TZ
-              value: "Europe/Tallinn"
+              value: "Etc/UTC"
             - name: DB_HOSTNAME
               value: "db"
             - name: DB_USERNAME

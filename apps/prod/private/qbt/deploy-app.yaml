@@ -36,6 +36,8 @@ spec:
               value: "7530"
             - name: TORRENTING_PORT
               value: "7531"
+            - name: TZ
+              value: Etc/UTC
           volumeMounts:
             - name: downloads
               mountPath: "/downloads"

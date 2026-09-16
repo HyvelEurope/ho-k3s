@@ -33,6 +33,9 @@ spec:
       containers:
         - name: xray
           image: teddysun/xray:26.7.28
+          env:
+            - name: TZ
+              value: Etc/UTC
           volumeMounts:
             - name: app
               mountPath: "/etc/xray/config.json"
