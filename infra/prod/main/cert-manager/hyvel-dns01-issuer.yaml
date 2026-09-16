@@ -16,7 +16,7 @@ spec:
                             name: hyvel-dns01-token
                             key: token
                     solverName: desec
-                    groupName: default
+                    groupName: acme.pr0ton11.github.com
 sops:
     age:
         - enc: |
@@ -29,6 +29,6 @@ sops:
             -----END AGE ENCRYPTED FILE-----
           recipient: age1na9sc4yaxzdvt5jqpq99q3umg2qkhsv3use7lgej6lw46wz8sgrspg7a2h
     encrypted_regex: ^(data|stringData|email)$
-    lastmodified: "2026-09-16T18:19:10Z"
-    mac: ENC[AES256_GCM,data:OxUSZiE64hkbHsCPmfMIFICc48twkptZX+xZE1hxoTobSQ3xLPDJ3ZWuLSAlJaD8ZmBXwSAbueV6KtqknAJamzA0D1t2iptuDoWThpXVPT339bkgPwVSDVSXEsFLPoBo96NsgMiatf988OKzbtewJUG2M7Za4Blvp8xRwbnf9e8=,iv:qyEnGjOIMSe7Wh/YMlbdfZecsWY7emNxEt2St5tAaME=,tag:lKMcU4sLKXgElPJqwm9qKQ==,type:str]
+    lastmodified: "2026-09-16T18:36:54Z"
+    mac: ENC[AES256_GCM,data:szBPjaDId9v0Z3K1BTQ6JV6zSz577VWM5ipa+EyEpYmlDl7/qsnoE8pkCUAJhEhNvVI27YjEZPTfZm3JuS/GIneTimYS6QI9JV+ek5sG1L4UhucUxHokAkcd9acLAIvXKdqOx6ysW6D1Gz7hfk945qcZ02513Io80Q+VSanNCLs=,iv:kzhTD4qyrJGy8gFB56cy8GvZZQSLPzp/BNr8Hmzqz/8=,tag:aYhwOAjwZbJS4SegDrEIlA==,type:str]
     version: 3.13.1

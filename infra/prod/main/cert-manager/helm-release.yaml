@@ -41,6 +41,5 @@ spec:
     name: cert-manager-desec-webhook
     namespace: flux-system
   values:
-    groupName: default
     secretName:
       - hyvel-dns01-token
