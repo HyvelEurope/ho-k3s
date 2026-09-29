@@ -59,7 +59,7 @@ spec:
             
           readinessProbe:
             httpGet:
-              path: /api/health/verbose
+              path: /api/health
               port: 7702
               scheme: HTTP
             periodSeconds: 10
