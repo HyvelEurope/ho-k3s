@@ -30,7 +30,7 @@ spec:
             claimName: immich-config-pvc
       containers:
         - name: immich
-          image: ghcr.io/imagegenius/immich:3.1.0-noml
+          image: ghcr.io/imagegenius/immich:3.2.4-noml
           envFrom:
             - secretRef:
                 name: app
