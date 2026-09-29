@@ -6,4 +6,3 @@ resources:
   - anubis-fa.yaml
   - compress.yaml
   - traefik-https-redirect.yaml
-  - cloudflare.yaml
