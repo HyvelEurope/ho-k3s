@@ -11,7 +11,7 @@ spec:
   storageClassName: proxmox-data-sc-0
   resources:
     requests:
-      storage: 10Gi
+      storage: 20Gi
 
 ---
 
