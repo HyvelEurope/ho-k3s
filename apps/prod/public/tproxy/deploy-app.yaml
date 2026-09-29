@@ -57,3 +57,30 @@ spec:
               mountPath: "/etc/telemt/config.toml"
               subPath: config.toml
               readOnly: true
+
+          startupProbe:
+            httpGet:
+              path: /v1/health
+              port: 9091
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+            
+          livenessProbe:
+            httpGet:
+              path: /v1/health
+              port: 9091
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+            
+          readinessProbe:
+            httpGet:
+              path: /v1/health
+              port: 9091
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3

@@ -54,13 +54,30 @@ spec:
               mountPath: "/photos"
             - name: config
               mountPath: "/config"
+
+          startupProbe:
+            httpGet:
+              path: /api/server/ping
+              port: 7571
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+            
           livenessProbe:
             httpGet:
               path: /api/server/ping
               port: 7571
               scheme: HTTP
-            initialDelaySeconds: 180
-            timeoutSeconds: 5
             periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 5
+            timeoutSeconds: 5
+            failureThreshold: 3
+            
+          readinessProbe:
+            httpGet:
+              path: /api/server/ping
+              port: 7571
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3

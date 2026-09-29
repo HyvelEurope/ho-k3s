@@ -42,3 +42,30 @@ spec:
               value: "465"
             - name: LLDAP_SMTP_OPTIONS__SMTP_ENCRYPTION
               value: "TLS"
+
+          startupProbe:
+            exec:
+              command:
+                - /app/lldap
+                - healthcheck
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+          
+          livenessProbe:
+            exec:
+              command:
+                - /app/lldap
+                - healthcheck
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          
+          readinessProbe:
+            exec:
+              command:
+                - /app/lldap
+                - healthcheck
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3

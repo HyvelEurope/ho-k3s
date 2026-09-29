@@ -34,14 +34,31 @@ spec:
           volumeMounts:
             - name: data
               mountPath: "/opt/ts"
+
+          startupProbe:
+            httpGet:
+              path: /
+              port: 7540
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+            
           livenessProbe:
             httpGet:
               path: /
               port: 7540
               scheme: HTTP
-            initialDelaySeconds: 180
-            timeoutSeconds: 5
             periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 5
+            timeoutSeconds: 5
+            failureThreshold: 3
+            
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 7540
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
 
