@@ -33,6 +33,10 @@ spec:
       containers:
         - name: xray
           image: ghcr.io/xtls/xray-core:26.9.30
+          args:
+            - run
+            - -c
+            - /etc/xray/config.json
           env:
             - name: TZ
               value: Etc/UTC
