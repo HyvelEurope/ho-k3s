@@ -32,7 +32,7 @@ spec:
             secretName: wildcard-hyvel-certificate-secret
       containers:
         - name: xray
-          image: teddysun/xray:26.7.28
+          image: ghcr.io/xtls/xray-core:26.9.30
           env:
             - name: TZ
               value: Etc/UTC
