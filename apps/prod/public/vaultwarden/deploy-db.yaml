@@ -31,7 +31,7 @@ spec:
             claimName: vaultwarden-db-pvc
       containers:
         - name: postgres
-          image: postgres:17.10-alpine
+          image: postgres:17.11-alpine
           envFrom:
             - secretRef:
                 name: db
@@ -45,3 +45,27 @@ spec:
           volumeMounts:
             - name: db
               mountPath: "/data"
+
+          startupProbe:
+            exec:
+              command:
+                - pg_isready
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+          
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
