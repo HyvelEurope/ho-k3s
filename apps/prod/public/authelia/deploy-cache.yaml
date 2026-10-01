@@ -31,3 +31,30 @@ spec:
           volumeMounts:
             - name: cache
               mountPath: "/data"
+
+          startupProbe:
+            exec:
+              command:
+                - valkey-cli
+                - ping
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+          
+          livenessProbe:
+            exec:
+              command:
+                - valkey-cli
+                - ping
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          
+          readinessProbe:
+            exec:
+              command:
+                - valkey-cli
+                - ping
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
