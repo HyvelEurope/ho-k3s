@@ -48,3 +48,30 @@ spec:
             - name: xray-certificate
               mountPath: "/etc/certs/"
               readOnly: true
+
+          startupProbe:
+            httpGet:
+              path: /
+              port: 9093
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+            
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 9093
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+            
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 9093
+              scheme: HTTP
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
