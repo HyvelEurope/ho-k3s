@@ -46,7 +46,7 @@ spec:
               mountPath: /run/telemt
       containers:
         - name: tproxy
-          image: ghcr.io/telemt/telemt:3.5.9
+          image: ghcr.io/telemt/telemt:3.5.13
           workingDir: /run/telemt
           args:
             - /etc/telemt/config.toml
