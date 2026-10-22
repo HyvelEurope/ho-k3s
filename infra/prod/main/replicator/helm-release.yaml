@@ -1,15 +1,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-    name: reflector
-    namespace: reflector
+    name: replicator
+    namespace: replicator
 spec:
     interval: 10m
     chart:
         spec:
-            chart: reflector
-            version: 10.0.65
+            chart: kubernetes-replicator
+            version: 2.12.2
             sourceRef:
                 kind: HelmRepository
-                name: emberstack
+                name: mittwald
                 namespace: flux-system
