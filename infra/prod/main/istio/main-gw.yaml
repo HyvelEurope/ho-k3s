@@ -1,7 +1,7 @@
 kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
-  name: main-gw
+  name: main
   namespace: istio
 spec:
   gatewayClassName: istio
@@ -15,3 +15,16 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+
+    - name: https-hyvel
+      protocol: HTTPS
+      port: 443
+      hostname: "*.hyvel.eu"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: wildcard-hyvel-certificate-secret
