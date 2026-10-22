@@ -5,7 +5,6 @@ metadata:
   namespace: reloader
 spec:
   interval: 10m
-  releaseName: reloader
   chart:
     spec:
       chart: reloader
@@ -15,5 +14,6 @@ spec:
         name: stakater
         namespace: flux-system
   values:
+    fullnameOverride: reloader
     reloader:
       reloadStrategy: annotations

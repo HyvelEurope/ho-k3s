@@ -5,7 +5,7 @@ metadata:
   namespace: replicator
 spec:
   interval: 10m
-  releaseName: reloader
+  releaseName: replicator
   chart:
     spec:
       chart: kubernetes-replicator
@@ -14,3 +14,5 @@ spec:
         kind: HelmRepository
         name: mittwald
         namespace: flux-system
+  values:
+    fullnameOverride: replicator
