@@ -14,5 +14,6 @@ spec:
         name: stakater
         namespace: flux-system
   values:
+    fullnameOverride: reloader
     reloader:
       reloadStrategy: annotations
