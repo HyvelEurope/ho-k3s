@@ -45,17 +45,12 @@ spec:
             service: app.anubis.svc.cluster.local
             port: 80
             includeRequestHeadersInCheck:
-              - authorization
               - cookie
               - x-real-ip
               - x-forwarded-for
               - x-forwarded-proto
-              - x-envoy-external-address
               - user-agent
               - accept-language
-            headersToUpstreamOnAllow:
-              - authorization
-              - path
             headersToDownstreamOnAllow:
               - set-cookie
             headersToDownstreamOnDeny:
