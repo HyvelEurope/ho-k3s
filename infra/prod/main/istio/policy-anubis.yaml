@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: anubis
+  namespace: istio
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: http-gateway
+  action: CUSTOM
+  provider:
+    name: anubis
+  rules:
+    - to:
+        - operation:
+            hosts:
+              - echo.hyvel.eu
+              - hyvel.eu

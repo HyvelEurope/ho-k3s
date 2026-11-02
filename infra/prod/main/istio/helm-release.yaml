@@ -38,3 +38,20 @@ spec:
   values:
     global:
       istioNamespace: istio
+    meshConfig:
+      extensionProviders:
+        - name: anubis
+          envoyExtAuthzHttp:
+            service: app.anubis.svc.cluster.local
+            port: 80
+            includeRequestHeadersInCheck:
+              - authorization
+              - cookie
+            headersToUpstreamOnAllow:
+              - authorization
+              - path
+            headersToDownstreamOnAllow:
+              - set-cookie
+            headersToDownstreamOnDeny:
+              - content-type
+              - set-cookie

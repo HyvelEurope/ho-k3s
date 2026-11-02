@@ -28,3 +28,16 @@ spec:
         certificateRefs:
           - kind: Secret
             name: wildcard-hyvel-certificate-secret
+
+    - name: https-ho-hyvel
+      protocol: HTTPS
+      port: 443
+      hostname: "*.ho.hyvel.eu"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: wildcard-ho-hyvel-certificate-secret
