@@ -8,4 +8,3 @@ resources:
   - helm-release.yaml
   - gw-main.yaml
   - policy-anubis.yaml
-  - filter-realip.yaml 

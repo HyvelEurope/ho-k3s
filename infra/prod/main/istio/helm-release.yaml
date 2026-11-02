@@ -44,13 +44,17 @@ spec:
           envoyExtAuthzHttp:
             service: app.anubis.svc.cluster.local
             port: 80
+            includeAdditionalHeadersInCheck:
+              X-Forwarded-Proto: '%REQ(:SCHEME)%'
+              X-Forwarded-Host: '%REQ(:AUTHORITY)%'
+              X-Original-Uri: '%REQ(:PATH)%'
+              X-Real-IP: '%DOWNSTREAM_REMOTE_ADDRESS_WITHOUT_PORT%'
             includeRequestHeadersInCheck:
               - cookie
-              - x-real-ip
-              - x-forwarded-for
-              - x-forwarded-proto
               - user-agent
               - accept-language
+              - accept
+              - x-forwarded-for
             headersToDownstreamOnAllow:
               - set-cookie
             headersToDownstreamOnDeny:
