@@ -52,9 +52,31 @@ spec:
             includeRequestHeadersInCheck:
               - cookie
               - user-agent
+              - accept 
               - accept-language
-              - accept
-              - x-forwarded-for
+              - accept-encoding
+              - upgrade-insecure-requests
+              - sec-fetch-dest
+              - sec-fetch-mode
+              - sec-fetch-site
+              - sec-fetch-user
+              - sec-ch-ua
+              - sec-ch-ua-mobile
+              - sec-ch-ua-platform
+              - sec-ch-ua-arch
+              - sec-ch-ua-bitness
+              - sec-ch-ua-full-version
+              - sec-ch-ua-full-version-list
+              - sec-ch-ua-model
+              - sec-ch-ua-platform-version
+              - sec-ch-ua-wow64
+              - cache-control
+              - pragma
+              - hx-request
+              - x-http-version
+              - baggage
+              - git-protocol
+              - cf-worker 
             headersToDownstreamOnAllow:
               - set-cookie
             headersToDownstreamOnDeny:
