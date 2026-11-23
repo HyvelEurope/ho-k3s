@@ -38,7 +38,7 @@ spec:
             secretName: nginx
       containers:
         - name: git-sync
-          image: registry.k8s.io/git-sync/git-sync:v4.8.0
+          image: registry.k8s.io/git-sync/git-sync:v4.7.1  # 4.8.0 has some issue with ownership
           securityContext:
             runAsUser: 65533
           env:
