@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/component: db
       annotations:
         k8up.io/backup: "true"
-        k8up.io/backupcommand: "sh -c 'PGDATABASE=\"$POSTGRES_DB\" PGUSER=\"$POSTGRES_USER\" PGPASSWORD=\"$POSTGRES_PASSWORD\" pg_dump --clean'"
+        k8up.io/backupcommand: "sh -c 'PGDATABASE=\"$POSTGRES_DB\" PGUSER=\"$POSTGRES_USER\" PGPASSWORD=\"$POSTGRES_PASSWORD\" pg_dump'"
         k8up.io/file-extension: ".sql"
     spec:
       volumes:
